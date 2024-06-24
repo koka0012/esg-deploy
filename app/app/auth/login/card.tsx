@@ -38,7 +38,7 @@ export default function card() {
   };
 
   return (
-    <div className="flex flex-col bg-zinc-900 rounded-lg p-5 gap-4 bg-opacity-70">
+    <div className="flex flex-col bg-zinc-950 rounded-lg p-5 gap-4 bg-opacity-70">
       <div>
         <h1 className="text-zinc-100 text-[24px]">Bem vindo!</h1>
         <p className="text-zinc-100 font-light">

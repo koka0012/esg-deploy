@@ -29,7 +29,7 @@ const Input = ({
   return (
     <div className="flex flex-1 flex-col gap-1 relative">
       <label htmlFor={name} className="text-[16px] font-medium text-zinc-100">
-        {label}:
+        {label}
       </label>
 
       <input
@@ -50,9 +50,9 @@ const Input = ({
           className="absolute top-[37px] right-[11px]"
         >
           {password === "password" ? (
-            <EyeIcon className="w-5" />
+            <EyeSlashIcon className="w-5 text-zinc-100" />
           ) : (
-            <EyeSlashIcon className="w-5" />
+            <EyeIcon className="w-5 text-zinc-100" />
           )}
         </button>
       )}
