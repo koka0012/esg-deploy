@@ -1,5 +1,14 @@
-const page = () => {
-  return <div>home</div>;
-};
+"use client";
 
-export default page;
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+export default function Page() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/auth/login");
+  }, []);
+
+  return <></>;
+}
