@@ -1,77 +1,23 @@
-"use client";
+import Card from "./card";
 
-import { Form, Formik, FormikHelpers } from "formik";
-import { object, string } from "yup";
-
-import Button from "@/app/components/Button/Button";
-import Input from "@/app/components/Input/Input";
-
-interface FormValues {
-  login: string;
-  password: string;
-}
-
-export default function page() {
-  const initialValues: FormValues = {
-    login: "",
-    password: "",
-  };
-
-  const validationSchema = object().shape({
-    login: string().required("é um campo obrigatório."),
-    password: string().required("é um campo obrigatório."),
-  });
-
-  const handleSubmit = async (
-    values: FormValues,
-    { setSubmitting }: FormikHelpers<FormValues>
-  ) => {
-    try {
-      console.log(values);
-    } catch (error) {
-      setSubmitting(false);
-    }
-  };
-
+const page = () => {
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        validateOnBlur={false}
-        validateOnChange={false}
-        validateOnMount={false}
-        onSubmit={handleSubmit}
-      >
-        {({ values, handleChange, errors, isSubmitting }) => (
-          <Form>
-            <div className="p-4 flex flex-col gap-4">
-              <Input
-                name="login"
-                label="Login"
-                placeholder="Digite o login"
-                value={values.login}
-                handleChange={handleChange}
-                error={errors.login}
-              />
-
-              <Input
-                type="password"
-                name="password"
-                label="Senha"
-                placeholder="Digite a senha"
-                value={values.password}
-                handleChange={handleChange}
-                error={errors.password}
-              />
-
-              <Button type="submit" disabled={isSubmitting}>
-                Entrar
-              </Button>
-            </div>
-          </Form>
-        )}
-      </Formik>
+    <div className="flex flex-col h-screen w-full bg-[url('../public/images/bg.png')] p-12">
+      <div className="flex h-screen">
+      <div className="text-slate-100 text-[32px] font-bold"> SpectraX</div>
+      </div>
+      <div className="flex justify-end ">
+        <div className="backdrop-blur w-3/5">
+          <Card />
+        </div>
+      </div>
+      <div className="flex flex-col h-screen justify-end">
+        <p className="text-slate-100">Desenvolvido por </p>
+        <div className="text-slate-100 text-[32px] font-bold"> SpectraX</div>
+        <p className="text-slate-100">SpectraX 2024. Todos os direitos reservados.</p>
+      </div>
     </div>
   );
-}
+};
+
+export default page;
