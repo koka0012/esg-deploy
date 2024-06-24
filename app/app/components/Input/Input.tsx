@@ -28,7 +28,7 @@ const Input = ({
 
   return (
     <div className="flex flex-1 flex-col gap-1 relative">
-      <label htmlFor={name} className="font-medium text-zinc-700">
+      <label htmlFor={name} className="text-[16px] font-medium text-zinc-100">
         {label}:
       </label>
 
@@ -38,7 +38,7 @@ const Input = ({
         value={value}
         placeholder={placeholder}
         onChange={handleChange}
-        className={`text-sm text-zinc-500 ${
+        className={`text-sm text-zinc-100 bg-transparent ${
           error ? "border-red-400" : ""
         } p-2 border rounded-md`}
       />
