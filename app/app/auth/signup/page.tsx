@@ -2,12 +2,21 @@ import FormSignup from "./formsignup";
 
 const page = () => {
   return (
-    <div className="flex flex-col h-screen w-full p-12 bg-gradient-to-br from-zinc-900 to-sky-700">
+    <div className="flex flex-col h-screen w-full p-12">
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        autoPlay
+        loop
+        muted
+      >
+        <source src="/images/bg-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="flex h-full items-start">
         <img src="/images/logoV.svg" width={248} height={128} alt="logo" />
       </div>
       <div className="flex justify-end">
-        <div className="backdrop-blur-sm w-1/2">
+        <div className="backdrop-blur-sm sm:w-1/2 w-full">
           <FormSignup />
         </div>
       </div>

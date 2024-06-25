@@ -62,7 +62,6 @@ function FormRecover() {
                   error={errors.email}
                 />
 
-
                 <Button
                   type="submit"
                   disabled={isSubmitting}
@@ -76,7 +75,6 @@ function FormRecover() {
           )}
         </Formik>
       </div>
-
     </div>
   );
 }

@@ -16,14 +16,14 @@ const Page = () => {
         <img src="/images/logoV.svg" width={248} height={128} alt="logo" />
       </div>
       <div className="flex justify-end">
-        <div className="backdrop-blur-sm w-1/2">
+        <div className="backdrop-blur-sm sm:w-1/2 w-full">
           <Card />
         </div>
       </div>
       <div className="flex flex-col h-full justify-end">
-        <p className="text-zinc-200 drop-shadow-md">Desenvolvido por </p>
+        <p className="text-zinc-100 drop-shadow-md">Desenvolvido por </p>
         <img src="/images/logoH.svg" width={150} height={150} alt="logo" />
-        <p className="text-zinc-200 drop-shadow-md">
+        <p className="text-zinc-100 drop-shadow-md">
           SpectraX 2024. Todos os direitos reservados.
         </p>
       </div>

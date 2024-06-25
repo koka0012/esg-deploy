@@ -6,7 +6,7 @@ import { object, string } from "yup";
 
 import Button from "@/app/components/Button/Button";
 import Input from "@/app/components/Input/Input";
-import Link from "next/link";
+
 interface FormValues {
   login: string;
   password: string;
@@ -87,7 +87,6 @@ function FormSignup() {
           )}
         </Formik>
       </div>
-
     </div>
   );
 }
