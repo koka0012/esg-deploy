@@ -3,8 +3,7 @@
 import { Form, Formik, FormikHelpers } from "formik";
 import { object, string } from "yup";
 
-import Button from "@/app/components/Button/Button";
-import Input from "@/app/components/Input/Input";
+import { Input, Button } from "@/app/components";
 
 interface FormValues {
   login: string;

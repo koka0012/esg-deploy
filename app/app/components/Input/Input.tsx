@@ -1,22 +1,26 @@
+"use client";
+
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 export interface InputProps {
   type?: string;
   name: string;
-  label: string;
+  label?: string;
   value: string;
   placeholder?: string;
+  className?: string;
   handleChange: (data: any) => void;
   error?: string;
 }
 
-const Input = ({
+export const Input = ({
   type = "text",
   name,
   label,
   value,
   placeholder,
+  className,
   handleChange,
   error,
 }: InputProps) => {
@@ -28,9 +32,11 @@ const Input = ({
 
   return (
     <div className="flex flex-1 flex-col gap-1 relative">
-      <label htmlFor={name} className="font-medium text-zinc-700">
-        {label}:
-      </label>
+      {label && (
+        <label htmlFor={name} className="font-medium text-zinc-700">
+          {label}:
+        </label>
+      )}
 
       <input
         type={type === "password" ? password : type}
@@ -38,7 +44,7 @@ const Input = ({
         value={value}
         placeholder={placeholder}
         onChange={handleChange}
-        className={`text-sm text-zinc-500 ${
+        className={`${className} hover:bg-white/5 text-sm text-zinc-500 ${
           error ? "border-red-400" : ""
         } p-2 border rounded-md`}
       />
@@ -58,10 +64,10 @@ const Input = ({
       )}
 
       {error && (
-        <div className="text-xs text-red-400">{`${label} ${error}`}</div>
+        <div className="text-xs text-red-400">
+          {label ? `${label} ${error}` : error}
+        </div>
       )}
     </div>
   );
 };
-
-export default Input;
