@@ -33,8 +33,8 @@ export const Input = ({
   return (
     <div className="flex flex-1 flex-col gap-1 relative">
       {label && (
-        <label htmlFor={name} className="font-medium text-zinc-700">
-          {label}:
+        <label htmlFor={name} className="text-sm font-medium text-zinc-100">
+          {label}
         </label>
       )}
 
@@ -44,7 +44,7 @@ export const Input = ({
         value={value}
         placeholder={placeholder}
         onChange={handleChange}
-        className={`${className} hover:bg-white/5 text-sm text-zinc-500 ${
+        className={`${className} text-sm text-zinc-100 placeholder-zinc-100/80 bg-transparent ${
           error ? "border-red-400" : ""
         } p-2 border rounded-md`}
       />

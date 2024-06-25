@@ -36,7 +36,7 @@ export const Select = ({
         name={name}
         value={value}
         onChange={handleChange}
-        className={`${className} bg-zinc-800 text-sm text-zinc-500 border-none appearance-none ${
+        className={`${className} bg-[#2a3042] text-sm text-zinc-500 border-none appearance-none ${
           error ? "border-red-400" : ""
         } p-2 border rounded-md`}
       >
