@@ -1,5 +1,5 @@
 import { Form, Formik, FormikHelpers } from "formik";
-import { Button, Input } from "../components";
+import { Button, Input } from "@/app/components";
 
 interface FormValues {
   car: string;
@@ -9,7 +9,7 @@ interface FormValues {
   nome_produtor: string;
 }
 
-const SearchForm = () => {
+const SearchModal = () => {
   const initialValues: FormValues = {
     car: "",
     cpf: "",
@@ -69,7 +69,6 @@ const SearchForm = () => {
                 <Input
                   name="id_relatorio"
                   label="Relatório"
-                  placeholder="Digite o ID do relatório"
                   value={values.id_relatorio}
                   handleChange={handleChange}
                   error={errors.id_relatorio}
@@ -80,7 +79,6 @@ const SearchForm = () => {
                 <Input
                   name="nome_produtor"
                   label="Produtor"
-                  placeholder="Digite o nome do produtor"
                   value={values.nome_produtor}
                   handleChange={handleChange}
                   error={errors.nome_produtor}
@@ -104,4 +102,4 @@ const SearchForm = () => {
   );
 };
 
-export default SearchForm;
+export default SearchModal;

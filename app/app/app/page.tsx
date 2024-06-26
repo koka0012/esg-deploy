@@ -1,5 +1,7 @@
+// Page.js
 "use client";
 
+import React, { useEffect, useRef, useState } from "react";
 import {
   PencilIcon,
   MagnifyingGlassIcon,
@@ -14,16 +16,21 @@ import {
   LockClosedIcon,
 } from "@heroicons/react/24/outline";
 import { Dock, VerticalBarChart, Label } from "@/app/components";
-
-import Card from "./Card";
-import SearchForm from "./SearchForm";
-import LayerForm from "./LayerForm";
-
-import { useEffect, useRef, useState } from "react";
+import Card from "./components/Card";
+import SearchModal from "./components/modals/SearchModal";
+import LayerModal from "./components/modals/LayerModal";
+import AddTerritoryModal from "./components/modals/AddTerritoryModal";
+import RestrictModal from "./components/modals/RestrictModal";
+import SearchDockModal from "./components/modals/SearchDockModal";
 
 export default function Page() {
   const [search, setSearch] = useState(false);
   const [layer, setLayer] = useState(false);
+
+  const [addTerritory, setAddTerritory] = useState(false);
+  const [restrict, setRestrict] = useState(false);
+  const [searchDock, setSearchDock] = useState(false);
+
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
 
@@ -61,14 +68,24 @@ export default function Page() {
     <div className="h-full p-4 flex flex-col gap-4 relative">
       {search && (
         <div ref={searchRef} className="absolute top-4 left-[6rem] z-10">
-          <SearchForm />
+          <SearchModal />
         </div>
       )}
 
       {layer && (
         <div ref={layerRef} className="absolute top-[8.5rem] z-10">
-          <LayerForm />
+          <LayerModal />
         </div>
+      )}
+
+      {addTerritory && (
+        <AddTerritoryModal handleClose={() => setAddTerritory(false)} />
+      )}
+
+      {restrict && <RestrictModal handleClose={() => setRestrict(false)} />}
+
+      {searchDock && (
+        <SearchDockModal handleClose={() => setSearchDock(false)} />
       )}
 
       <div className="flex flex-1 gap-4">
@@ -93,9 +110,8 @@ export default function Page() {
           className="flex flex-1 justify-end"
           style={{ height: "calc(90vh - 112px)" }}
         >
-          <div className="w-1/4 md:w-1/3 flex flex-col  gap-4">
+          <div className="w-1/5 md:w-1/5 flex flex-col gap-4">
             <Card title="Grafico" content={<VerticalBarChart data={data} />} />
-
             <Card title="Legenda" content={<Label />} />
           </div>
         </div>
@@ -131,9 +147,15 @@ export default function Page() {
           items={[
             {
               icon: <PencilIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setAddTerritory(true),
             },
             {
               icon: <LockClosedIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setRestrict(true),
+            },
+            {
+              icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setSearchDock(true),
             },
             {
               icon: <GlobeAmericasIcon className="w-8 text-zinc-100 p-1" />,
@@ -142,9 +164,6 @@ export default function Page() {
               icon: (
                 <ClipboardDocumentListIcon className="w-8 text-zinc-100 p-1" />
               ),
-            },
-            {
-              icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
             },
             {
               icon: (

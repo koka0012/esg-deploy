@@ -1,11 +1,13 @@
-import Header from "./Header";
+import Header from "./components/layout/Header";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="h-screen text-zinc-100 overflow-hidden">
+    <div className="flex flex-col h-screen overflow-hidden bg-cover bg-[url('../public/images/bg_home.jpg')]">
       <Header />
 
-      <div className="bg-zinc-300 h-[90vh]">{children}</div>
+      <div className="relative bg-opacity-0 bg-gray-900 inset-0 w-full h-full">
+        {children}
+      </div>
     </div>
   );
 }

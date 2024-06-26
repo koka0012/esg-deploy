@@ -8,6 +8,7 @@ export interface Option {
 export interface SelectProps {
   name: string;
   label?: string;
+  placeholder?: string;
   value: string;
   className?: string;
   handleChange: (data: any) => void;
@@ -18,6 +19,7 @@ export interface SelectProps {
 export const Select = ({
   name,
   label,
+  placeholder,
   value,
   className,
   handleChange,
@@ -27,8 +29,8 @@ export const Select = ({
   return (
     <div className="flex flex-1 flex-col gap-1">
       {label && (
-        <label htmlFor={name} className="font-medium text-zinc-700">
-          {label}:
+        <label htmlFor={name} className="font-medium text-zinc-100">
+          {label}
         </label>
       )}
 
@@ -40,7 +42,7 @@ export const Select = ({
           error ? "border-red-400" : ""
         } p-2 border rounded-md`}
       >
-        <option value="">Selecione</option>
+        <option value="">{placeholder ?? "Selecione"}</option>
         {options.map((option: Option, key: number) => (
           <option key={key} value={option.value}>
             {option.label}
