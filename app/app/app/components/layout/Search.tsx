@@ -14,27 +14,27 @@ export default function Search() {
     {
       label: "Umidade do Solo",
       value: "umidade_solo",
-      image: "images/map_umidade.png",
+      image: "Images/map_umidade.png",
     },
     {
       label: "Biomassa",
       value: "biomasaa",
-      image: "images/map_biomassa.png",
+      image: "Images/map_biomassa.png",
     },
     {
       label: "Seca",
       value: "seca",
-      image: "images/map_seca.png",
+      image: "Images/map_seca.png",
     },
     {
       label: "Chuva",
       value: "chuva",
-      image: "images/map_chuva.png",
+      image: "Images/map_chuva.png",
     },
     {
       label: "Fluxo de CO2",
       value: "fluxo_co2",
-      image: "images/map_fluxo_co2.png",
+      image: "Images/map_fluxo_co2.png",
     },
   ];
 

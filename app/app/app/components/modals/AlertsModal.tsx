@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/app/components";
 
 const AlertsModal = ({ handleClose }) => {
   const [selectedVariable, setSelectedVariable] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setShowModal(true);
+  }, []);
 
   const variables = [
     "Novo Desmatamento",
@@ -14,9 +19,9 @@ const AlertsModal = ({ handleClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="w-[32rem] bg-[#2a3042] p-4 rounded-md relative">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-white">Alerta</h2>
+      <div className={`w-[32rem] bg-[#2a3042]  rounded-md relative  transition-transform duration-300 ${showModal ? 'animate-fadeInUp' : 'opacity-0'}`}>
+        <div className="flex items-center bg-[#1c202c] p-4 rounded-t-md justify-between mb-4">
+          <h2 className="text-lg font-bold text-white">Alertas</h2>
           <button
             onClick={handleClose}
             className="text-zinc-100 hover:text-red-600 focus:outline-none"
@@ -25,13 +30,21 @@ const AlertsModal = ({ handleClose }) => {
           </button>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2 px-4">
           <div className="bg-[#1c202c] p-4 rounded-md">
-            <p className="text-white">Últimos 5 alertas:</p>
+            <p className="text-white">Alerta 1</p>
+            {/* Display the last 5 alerts here */}
+          </div>
+          <div className="bg-[#1c202c] p-4 rounded-md">
+            <p className="text-white">Alerta 2</p>
+            {/* Display the last 5 alerts here */}
+          </div>
+          <div className="bg-[#1c202c] p-4 rounded-md">
+            <p className="text-white">Alerta 3</p>
             {/* Display the last 5 alerts here */}
           </div>
           <div>
-            <label className="block text-white mb-2">Filtrar por Variável</label>
+            <label className="block text-white mb-2 mt-4">Filtrar por Variável</label>
             <select
               value={selectedVariable}
               onChange={(e) => setSelectedVariable(e.target.value)}
@@ -46,12 +59,12 @@ const AlertsModal = ({ handleClose }) => {
           </div>
         </div>
 
-        <div className="flex justify-end mt-4">
+        <div className="flex bg-[#1c202c] px-4 py-2 rounded-b-md justify-end mt-4">
           <Button
             className="bg-slate-700 hover:bg-[#2a3042]/80 !text-zinc-100"
             onClick={handleClose}
           >
-            Fechar
+            Filtrar
           </Button>
         </div>
       </div>

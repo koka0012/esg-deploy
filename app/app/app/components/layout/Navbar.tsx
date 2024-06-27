@@ -29,7 +29,7 @@ const Navbar = () => {
           type="button"
           className="h-[2.25rem] w-[2.25rem] rounded-full overflow-hidden"
         >
-          <img src="images/user.svg" alt="user" />
+          <img src="Images/user.svg" alt="user" />
         </button>
       </div>
     </>

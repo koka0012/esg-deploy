@@ -1,4 +1,4 @@
-// AddTerritoryModal.js
+import { useState, useEffect } from "react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { Button, Input } from "@/app/components";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -58,9 +58,15 @@ const AddTerritoryModal = ({ handleClose }) => {
     }
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setShowModal(true);
+  }, []);
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="w-[32rem] bg-[#2a3042] rounded-md relative">
+      <div className={`w-[32rem] bg-[#2a3042] rounded-md relative transition-transform duration-300 ${showModal ? 'animate-fadeInUp' : 'opacity-0'}`}>
         <div className="flex bg-[#1c202c] rounded-t-md p-4 items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-white">Adicionar Território</h2>
           <button
@@ -70,7 +76,7 @@ const AddTerritoryModal = ({ handleClose }) => {
             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="p-4">
+        <div className="mx-4">
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             {({ values, handleChange, setValues, errors, isSubmitting }) => (
               <Form>
@@ -183,10 +189,9 @@ const AddTerritoryModal = ({ handleClose }) => {
             )}
           </Formik>
         </div>
-        <div className="flex  bg-[#1c202c] rounded-b-md p-2 justify-end mt-4">
+        <div className="flex bg-[#1c202c] rounded-b-md p-2 justify-end mt-4">
           <Button
             type="submit"
-            // disabled={isSubmitting}
             className="bg-[#2a3042] hover:bg-[#2a3042]/80 !text-zinc-100 mr-2"
           >
             Salvar

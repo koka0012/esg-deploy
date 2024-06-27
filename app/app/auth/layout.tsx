@@ -11,18 +11,18 @@ export default function AuthLayout({
         loop
         muted
       >
-        <source src="/videos/bg-video.mp4" type="video/mp4" />
+        <source src="/Videos/bg-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      <img src="/images/logoV.svg" width={250} alt="logo" />
+      <img src="/Images/logoV.svg" width={250} alt="logo" />
 
       <div className="h-screen flex justify-end items-center">{children}</div>
 
       <div className="text-xs text-zinc-100 flex flex-col">
         <div className="drop-shadow-md">Desenvolvido por </div>
 
-        <img src="/images/logoH.svg" width={150} alt="logo" />
+        <img src="/Images/logoH.svg" width={150} alt="logo" />
 
         <div className="drop-shadow-md">
           SpectraX 2024. Todos os direitos reservados.

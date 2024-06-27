@@ -26,7 +26,7 @@ const LayerForm = () => {
     <div className="bg-[#2a3042] bg-opacity-50 backdrop-blur-md text-xs text-white p-3 rounded-md flex flex-col gap-2 relative">
       <button type="button" className="flex flex-col items-center gap-2">
         <img
-          src="images/pin_map.png"
+          src="Images/pin_map.png"
           className="w-[2.5rem] aspect-square rounded-md"
         />
         <div className="w-[2.5rem] flex justify-center">Mapa</div>
@@ -34,7 +34,7 @@ const LayerForm = () => {
 
       <button type="button" className="flex flex-col items-center gap-2">
         <img
-          src="images/pin_satelite.png"
+          src="Images/pin_satelite.png"
           className="w-[2.5rem] aspect-square rounded-md"
         />
         <div className="w-[2.5rem] flex justify-center">Satélite</div>
@@ -42,7 +42,7 @@ const LayerForm = () => {
 
       <button type="button" className="flex flex-col items-center gap-2">
         <img
-          src="images/pin_relevo.png"
+          src="Images/pin_relevo.png"
           className="w-[2.5rem] aspect-square rounded-md"
         />
         <div className="w-[2.5rem] flex justify-center">Relevo</div>
@@ -54,7 +54,7 @@ const LayerForm = () => {
         className="flex flex-col items-center gap-2"
       >
         <img
-          src="images/pin_orbital.png"
+          src="Images/pin_orbital.png"
           className="w-[2.5rem] aspect-square rounded-md"
         />
         <div className="w-[2.5rem] flex justify-center">Mapa Orbital</div>
