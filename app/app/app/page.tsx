@@ -22,6 +22,10 @@ import LayerModal from "./components/modals/LayerModal";
 import AddTerritoryModal from "./components/modals/AddTerritoryModal";
 import RestrictModal from "./components/modals/RestrictModal";
 import SearchDockModal from "./components/modals/SearchDockModal";
+import EnvironmentalModal from "./components/modals/EnvironmentalModal";
+import ReportsModal from "./components/modals/ReportsModal";
+import AreaInsightsModal from "./components/modals/AreaInsightsModal";
+import AlertsModal from "./components/modals/AlertsModal";
 
 export default function Page() {
   const [search, setSearch] = useState(false);
@@ -30,6 +34,10 @@ export default function Page() {
   const [addTerritory, setAddTerritory] = useState(false);
   const [restrict, setRestrict] = useState(false);
   const [searchDock, setSearchDock] = useState(false);
+  const [environmental, setEnvironmental] = useState(false);
+  const [reports, setReports] = useState(false);
+  const [areaInsights, setAreaInsights] = useState(false);
+  const [alerts, setAlerts] = useState(false);
 
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
@@ -87,6 +95,18 @@ export default function Page() {
       {searchDock && (
         <SearchDockModal handleClose={() => setSearchDock(false)} />
       )}
+
+      {environmental && (
+        <EnvironmentalModal handleClose={() => setEnvironmental(false)} />
+      )}
+
+      {reports && <ReportsModal handleClose={() => setReports(false)} />}
+
+      {areaInsights && (
+        <AreaInsightsModal handleClose={() => setAreaInsights(false)} />
+      )}
+
+      {alerts && <AlertsModal handleClose={() => setAlerts(false)} />}
 
       <div className="flex flex-1 gap-4">
         <div className="w-[4rem]">
@@ -159,19 +179,23 @@ export default function Page() {
             },
             {
               icon: <GlobeAmericasIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setEnvironmental(true),
             },
             {
               icon: (
                 <ClipboardDocumentListIcon className="w-8 text-zinc-100 p-1" />
               ),
+              handleClick: () => setReports(true),
             },
             {
               icon: (
                 <PresentationChartLineIcon className="w-8 text-zinc-100 p-1" />
               ),
+              handleClick: () => setAreaInsights(true),
             },
             {
               icon: <ExclamationCircleIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setAlerts(true),
             },
           ]}
           style="dock"
