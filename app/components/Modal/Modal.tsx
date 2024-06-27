@@ -34,11 +34,11 @@ export const Modal = forwardRef(({ children }: ModalProps, ref) => {
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full flex flex-1 items-center justify-center bg-black bg-opacity-50 z-50 pointer-events-auto	"
+      className="fixed top-0 left-0 w-full h-full flex flex-1 items-center justify-center bg-black bg-opacity-50 z-50 pointer-events-auto"
       onClick={handleCloseModal}
     >
       <div
-        className="transition-transform duration-300 pointer-events-autoanimate-fadeInUp"
+        className="transition-transform duration-300 pointer-events-auto animate-fadeInUp"
         onClick={(e) => e.stopPropagation()}
       >
         {children}
