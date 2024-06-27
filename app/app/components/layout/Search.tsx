@@ -70,7 +70,7 @@ const Search = () => {
   };
 
   return (
-    <div className="w-1/4 relative">
+    <div className="w-[16rem] relative">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ values, handleChange, errors }) => (
           <Form>
@@ -79,14 +79,14 @@ const Search = () => {
               className="w-full bg-[#2f3549] text-sm text-white p-2 rounded-md flex justify-between items-center"
               onClick={toggleDropdown}
             >
-              <div>{selectedOption.label}</div>
-
               <img
                 src={selectedOption.image}
                 alt={selectedOption.label}
                 width={75}
                 className="rounded-md"
               />
+
+              <div>{selectedOption.label}</div>
             </button>
 
             {isDropdownOpen && (
@@ -97,14 +97,14 @@ const Search = () => {
                     className="hover:bg-[#3c435a] rounded-md cursor-pointer flex justify-between items-center transition-all duration-150"
                     onClick={() => handleOptionClick(option)}
                   >
-                    <div className="truncate">{option.label}</div>
-
                     <img
                       src={option.image}
                       alt={option.label}
                       width={75}
                       className="rounded-md"
                     />
+
+                    <div className="truncate">{option.label}</div>
                   </li>
                 ))}
               </ul>
