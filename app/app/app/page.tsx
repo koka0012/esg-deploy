@@ -1,4 +1,3 @@
-// Page.js
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -15,12 +14,14 @@ import {
   ExclamationCircleIcon,
   LockClosedIcon,
 } from "@heroicons/react/24/outline";
-import { Dock, VerticalBarChart, Label } from "@/app/components";
+import { Dock, VerticalBarChart, Label, Modal } from "@/app/components";
+
 import Card from "./components/Card";
-import SearchModal from "./components/modals/SearchModal";
-import LayerModal from "./components/modals/LayerModal";
+import Search from "./components/modals/Search";
+import Layer from "./components/modals/Layer";
+import Restrict from "./components/modals/Restrict";
+
 import AddTerritoryModal from "./components/modals/AddTerritoryModal";
-import RestrictModal from "./components/modals/RestrictModal";
 import SearchDockModal from "./components/modals/SearchDockModal";
 import EnvironmentalModal from "./components/modals/EnvironmentalModal";
 import ReportsModal from "./components/modals/ReportsModal";
@@ -32,7 +33,6 @@ export default function Page() {
   const [layer, setLayer] = useState(false);
 
   const [addTerritory, setAddTerritory] = useState(false);
-  const [restrict, setRestrict] = useState(false);
   const [searchDock, setSearchDock] = useState(false);
   const [environmental, setEnvironmental] = useState(false);
   const [reports, setReports] = useState(false);
@@ -41,6 +41,8 @@ export default function Page() {
 
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
+
+  const restrictRef = useRef<any>(null);
 
   const data = [
     { name: "Jan", uv: 200 },
@@ -73,24 +75,26 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="h-full p-4 flex flex-col gap-4 relative">
+    <div className="h-full  p-4 flex flex-1 flex-col gap-4 relative">
       {search && (
         <div ref={searchRef} className="absolute top-4 left-[6rem] z-10">
-          <SearchModal />
+          <Search />
         </div>
       )}
 
       {layer && (
         <div ref={layerRef} className="absolute top-[8.5rem] z-10">
-          <LayerModal />
+          <Layer />
         </div>
       )}
+
+      <Modal ref={restrictRef}>
+        <Restrict />
+      </Modal>
 
       {addTerritory && (
         <AddTerritoryModal handleClose={() => setAddTerritory(false)} />
       )}
-
-      {restrict && <RestrictModal handleClose={() => setRestrict(false)} />}
 
       {searchDock && (
         <SearchDockModal handleClose={() => setSearchDock(false)} />
@@ -171,7 +175,7 @@ export default function Page() {
             },
             {
               icon: <LockClosedIcon className="w-8 text-zinc-100 p-1" />,
-              handleClick: () => setRestrict(true),
+              handleClick: () => restrictRef.current.open(),
             },
             {
               icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
