@@ -34,7 +34,7 @@ export const Modal = forwardRef(({ children }: ModalProps, ref) => {
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full flex flex-1 items-center justify-center bg-[#2a3042] bg-opacity-75 z-50"
+      className="fixed top-0 left-0 w-full h-full flex flex-1 items-center justify-center bg-black bg-opacity-50 z-50"
       onClick={handleCloseModal}
     >
       <div onClick={(e) => e.stopPropagation()}>{children}</div>
