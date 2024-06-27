@@ -25,18 +25,15 @@ import Restrict from "./components/modals/Restrict";
 import Environment from "./components/modals/Environment";
 
 import SearchDockModal from "./components/modals/SearchDockModal";
-import ReportsModal from "./components/modals/ReportsModal";
+import ReportsModal from "./components/modals/Reports";
 import AreaInsightsModal from "./components/modals/AreaInsightsModal";
-import AlertsModal from "./components/modals/AlertsModal";
+import AlertsModal from "./components/modals/Alerts";
+import Reports from "./components/modals/Reports";
+import Alerts from "./components/modals/Alerts";
 
 export default function Page() {
   const [search, setSearch] = useState(false);
   const [layer, setLayer] = useState(false);
-
-  const [searchDock, setSearchDock] = useState(false);
-  const [reports, setReports] = useState(false);
-  const [areaInsights, setAreaInsights] = useState(false);
-  const [alerts, setAlerts] = useState(false);
 
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
@@ -44,6 +41,8 @@ export default function Page() {
   const addTerritoryRef = useRef<any>(null);
   const restrictRef = useRef<any>(null);
   const environmentRef = useRef<any>(null);
+  const reportsRef = useRef<any>(null);
+  const alertsRef = useRef<any>(null);
 
   const data = [
     { name: "Jan", uv: 200 },
@@ -76,15 +75,15 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="h-full  p-4 flex flex-1 flex-col gap-4 relative">
+    <div className=" w-full h-full pointer-events-none relative " >
       {search && (
-        <div ref={searchRef} className="absolute top-4 left-[6rem] z-10">
+        <div ref={searchRef} className="absolute top-4 left-[6rem] z-10 pointer-events-auto">
           <Search />
         </div>
       )}
 
       {layer && (
-        <div ref={layerRef} className="absolute top-[8.5rem] z-10">
+        <div ref={layerRef} className="absolute top-[8.5rem] z-10 pointer-events-auto">
           <Layer />
         </div>
       )}
@@ -101,47 +100,43 @@ export default function Page() {
         <Environment onClose={() => environmentRef.current.close()} />
       </Modal>
 
-      {searchDock && (
-        <SearchDockModal handleClose={() => setSearchDock(false)} />
-      )}
+      <Modal ref={reportsRef}>
+        <Reports
+          onClose={() => reportsRef.current.close()}
+          onSearch={() => reportsRef.current.close()}
+        />
+      </Modal>
+      <Modal ref={alertsRef}>
+        <Alerts onClose={() => alertsRef.current.close()} />
+      </Modal>
 
-      {reports && <ReportsModal handleClose={() => setReports(false)} />}
+      <div className="absolute top-3 left-3">
+        <Dock
+          direction="vertical"
+          items={[
+            {
+              icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setSearch(true),
+            },
+            {
+              icon: <Square3Stack3DIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setLayer(true),
+            },
+          ]}
+          style="button"
+        />
+      </div>
 
-      {areaInsights && (
-        <AreaInsightsModal handleClose={() => setAreaInsights(false)} />
-      )}
-
-      {alerts && <AlertsModal handleClose={() => setAlerts(false)} />}
-
-      <div className="flex flex-1 gap-4">
-        <div className="w-[4rem]">
-          <Dock
-            direction="vertical"
-            items={[
-              {
-                icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
-                handleClick: () => setSearch(true),
-              },
-              {
-                icon: <Square3Stack3DIcon className="w-8 text-white p-1" />,
-                handleClick: () => setLayer(true),
-              },
-            ]}
-            style="button"
-          />
-        </div>
-
+      <div className="absolute right-3 top-0 bottom-0 flex flex-row gap-3 py-3">
         <div
-          className="flex flex-1 justify-end"
-          style={{ height: "calc(90vh - 112px)" }}
         >
-          <div className="w-1/5 md:w-1/5 flex flex-col gap-4">
+          <div className="flex flex-col gap-4 pointer-events-auto">
             <Card title="Grafico" content={<VerticalBarChart data={data} />} />
             <Card title="Legenda" content={<Label />} />
           </div>
         </div>
+        <div className="self-center">
 
-        <div className="w-[4rem] flex items-center">
           <Dock
             direction="vertical"
             items={[
@@ -164,7 +159,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="h-[4rem] flex justify-center">
+      <div className="absolute right-0 mx-auto left-0 bottom-3 flex justify-center ">
         <Dock
           direction="horizontal"
           items={[
@@ -178,7 +173,6 @@ export default function Page() {
             },
             {
               icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
-              handleClick: () => setSearchDock(true),
             },
             {
               icon: <GlobeAmericasIcon className="w-8 text-white p-1" />,
@@ -188,17 +182,16 @@ export default function Page() {
               icon: (
                 <ClipboardDocumentListIcon className="w-8 text-white p-1" />
               ),
-              handleClick: () => setReports(true),
+              handleClick: () => reportsRef.current.open(),
             },
             {
               icon: (
                 <PresentationChartLineIcon className="w-8 text-white p-1" />
               ),
-              handleClick: () => setAreaInsights(true),
             },
             {
               icon: <ExclamationCircleIcon className="w-8 text-white p-1" />,
-              handleClick: () => setAlerts(true),
+              handleClick: () => alertsRef.current.open(),
             },
           ]}
           style="dock"

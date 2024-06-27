@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/app/components";
 
-const AlertsModal = ({ handleClose }) => {
+const AlertsModal = ({ handleClose }: any) => {
   const [selectedVariable, setSelectedVariable] = useState("");
   const [showModal, setShowModal] = useState(false);
 

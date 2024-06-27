@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button, Input } from "@/app/components";
 
-const ReportsModal = ({ handleClose }) => {
+const ReportsModal = ({ handleClose }: any) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
 
@@ -10,7 +10,7 @@ const ReportsModal = ({ handleClose }) => {
     setShowModal(true);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("Search query:", searchQuery);
   };
