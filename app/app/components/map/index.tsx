@@ -1,11 +1,11 @@
 'use client'
-import { _WMSLayer as WMSLayer, TileLayer, GeoBoundingBox, NonGeoBoundingBox } from '@deck.gl/geo-layers';
-import {BitmapLayer} from '@deck.gl/layers'
-import { DeckGL  } from '@deck.gl/react';
-import PrimitiveMap from 'react-map-gl';
-import { WMSService } from '@loaders.gl/wms'
-import { reduce } from 'lodash'
+import type { GeoBoundingBox } from '@deck.gl/geo-layers';
+import { DeckGL } from '@deck.gl/react';
+import { BitmapLayer, MVTLayer, TileLayer, } from 'deck.gl';
+import {_WMSLayer as WMSLayer} from '@deck.gl/geo-layers'
+import { reduce } from 'lodash';
 import proj4 from 'proj4';
+import PrimitiveMap from 'react-map-gl';
 
 
 export interface IMapProps {
@@ -59,7 +59,7 @@ export function Map({ apiToken }: IMapProps) {
   //   {width}
   //   {height}
   //   {layers}
-    
+
   //   */
   // })
 
@@ -70,7 +70,7 @@ export function Map({ apiToken }: IMapProps) {
     maxZoom: 19,
     maxRequests: 6,
     debounce: 100,
-    
+
     getTileData: (tile) => {
       const bbox = tile.bbox as GeoBoundingBox
       const [west, south] = proj4('EPSG:4326', 'EPSG:3857', [bbox.west, bbox.south]);
@@ -91,7 +91,7 @@ export function Map({ apiToken }: IMapProps) {
       qp.append('transparent', 'false')
       qp.append('version', '1.1.1')
       qp.append('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImF1Z3VzdG8uc2lsdmVpcmFAc3BlY3RyYXguY29tLmJyIiwidHlwZSI6InVzZXIiLCJjbnBqIjoiNTIyNDE0MzQwMDAxODciLCJpZCI6MTIsImlhdCI6MTcxOTUyMzQ4OCwiZXhwIjoxNzE5NTMwNjg4LCJzdWIiOiJjbGllbnQtZGFydCJ9.V5IujZWDXxrUuhzlPSwfNYnRaAWe2-FPKtzGf_hTZCU')
-      
+
       const url = `https://account.farmguide.com.br/api/map?${qp.toString()}`
       return url
     },
@@ -99,15 +99,31 @@ export function Map({ apiToken }: IMapProps) {
     colorFormat: 'RGBA',
     tileSize: 256,
     renderSubLayers: (props) => {
-      const {west, south, east, north} = props.tile.bbox as GeoBoundingBox
+      const { west, south, east, north } = props.tile.bbox as GeoBoundingBox
       return new BitmapLayer(props, {
         data: null as unknown as undefined,
         image: props.data,
         opacity: 1,
         transparentColor: [255, 255, 255, 0],
         bounds: [west, south, east, north]
-    })}
+      })
+    }
   })
+
+  const mvtLayer = new MVTLayer({
+    id: 'mvt-layer',
+    data: [
+      `https://account.farmguide.com.br/api/vector?sc=admin&layers=vector_soybean_2023&styles=nd&x={x}&y={y}&z={z}&token=${apiToken}`
+    ],
+    getFillColor: () => [164,193,73],
+    getLineWidth: () => 10,
+    getLineColor: () => [164,193,73],
+    opacity: 0.5,
+    filled: true,
+    stroked: true,
+  })
+  
+
 
   return (
     <DeckGL
@@ -116,11 +132,11 @@ export function Map({ apiToken }: IMapProps) {
         latitude: -15.79,
         zoom: 3
       }}
-      layers={[wmsLayer]}
+      layers={[wmsLayer, mvtLayer]}
       controller>
       <PrimitiveMap
         mapboxAccessToken='pk.eyJ1IjoiYXVndXN0by1zcGVjdHJheCIsImEiOiJjbHh4ZnNyOWUxN3Q2Mmtwcjlnbml2NGtrIn0.felXsgObrwgY5m-ew68RFA'
-        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapStyle="mapbox://styles/mapbox/satellite-v9"
       >
       </PrimitiveMap>
     </DeckGL>
