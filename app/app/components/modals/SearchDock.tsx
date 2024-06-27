@@ -109,21 +109,26 @@ const SearchDock = ({ onClose }: SearchDockProps) => {
                   <div className="max-h-40 col-span-full bg-[#2a3042] rounded-md p-2 grid grid-cols-3 gap-2 overflow-auto">
                     {criteriaItems.map((item) => (
                       <div key={item} className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          id={item}
-                          checked={selectedCriteria.includes(item)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setSelectedCriteria([...selectedCriteria, item]);
-                            } else {
-                              setSelectedCriteria(
-                                selectedCriteria.filter((c) => c !== item)
-                              );
-                            }
-                          }}
-                          className="bg-white checked:bg-[#2f3549] h-4 w-4 rounded-full border-2 appearance-none transition-all duration-150"
-                        />
+                        <div className="border-2 rounded-full flex">
+                          <input
+                            type="checkbox"
+                            id={item}
+                            checked={selectedCriteria.includes(item)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setSelectedCriteria([
+                                  ...selectedCriteria,
+                                  item,
+                                ]);
+                              } else {
+                                setSelectedCriteria(
+                                  selectedCriteria.filter((c) => c !== item)
+                                );
+                              }
+                            }}
+                            className="checked:bg-white bg-[#2f3549] h-3 w-3 rounded-full border-2 border-[#2f3549] appearance-none transition-all duration-150"
+                          />
+                        </div>
 
                         <label htmlFor={item} className="text-white text-xs">
                           {item}
