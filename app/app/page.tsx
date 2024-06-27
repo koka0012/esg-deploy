@@ -26,11 +26,13 @@ import Environment from "./components/modals/Environment";
 import Reports from "./components/modals/Reports";
 import Alerts from "./components/modals/Alerts";
 import SearchDock from "./components/modals/SearchDock";
+import AreaInsights from "./components/modals/AreaInsights";
 
 export default function Page() {
   const [search, setSearch] = useState(false);
   const [layer, setLayer] = useState(false);
   const [searchDock, setSearchDock] = useState(false);
+  const [insights, setInsights] = useState(false);
 
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
@@ -102,6 +104,11 @@ export default function Page() {
       {searchDock && (
         <div className="absolute bottom-[5.55rem] inset-x-0 flex justify-center z-10 pointer-events-auto">
           <SearchDock onClose={() => setSearchDock(false)} />
+        </div>
+      )}
+      {insights && (
+        <div className="absolute bottom-[5.55rem] inset-x-0 flex justify-center z-10 pointer-events-auto">
+          <AreaInsights onClose={() => setInsights(false)} />
         </div>
       )}
 
@@ -199,6 +206,7 @@ export default function Page() {
               icon: (
                 <PresentationChartLineIcon className="w-8 text-white p-1" />
               ),
+              handleClick: () => setInsights(!searchDock),
             },
             {
               icon: <ExclamationCircleIcon className="w-8 text-white p-1" />,

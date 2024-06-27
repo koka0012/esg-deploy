@@ -38,7 +38,7 @@ export const Modal = forwardRef(({ children }: ModalProps, ref) => {
       onClick={handleCloseModal}
     >
       <div
-        className="transition-transform duration-300 pointer-events-autoanimate-fadeInUp"
+        className="transition-transform duration-300 pointer-events-auto animate-fadeInUp"
         onClick={(e) => e.stopPropagation()}
       >
         {children}
