@@ -29,7 +29,7 @@ export const Select = ({
   return (
     <div className="flex flex-1 flex-col gap-1">
       {label && (
-        <label htmlFor={name} className="font-medium text-zinc-100">
+        <label htmlFor={name} className="font-medium text-white">
           {label}
         </label>
       )}
@@ -38,13 +38,15 @@ export const Select = ({
         name={name}
         value={value}
         onChange={handleChange}
-        className={`${className} bg-[#2a3042] text-sm text-zinc-500 border-none appearance-none ${
-          error ? "border-red-400" : ""
-        } p-2 border rounded-md`}
+        className={`${className} text-sm text-[#6a738b] border-none appearance-none ${
+          error ? "bg-red-300/50" : "bg-[#3c435a]/50"
+        } p-2 rounded-md`}
       >
-        <option value="">{placeholder ?? "Selecione"}</option>
+        <option value="" className="bg-[#3c435a]">
+          {placeholder ?? "Selecione"}
+        </option>
         {options.map((option: Option, key: number) => (
-          <option key={key} value={option.value}>
+          <option key={key} value={option.value} className="bg-[#3c435a]">
             {option.label}
           </option>
         ))}

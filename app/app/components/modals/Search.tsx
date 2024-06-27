@@ -89,7 +89,7 @@ const SearchModal = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-[#2a3042] hover:bg-[#2a3042]/80 !text-zinc-100"
+                  className="bg-[#2a3042] hover:bg-[#2f3549] !text-white"
                 >
                   Pesquisar
                 </Button>

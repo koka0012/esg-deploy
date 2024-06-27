@@ -31,7 +31,7 @@ export const Dock: React.FC<DockProps> = ({ direction, items, style }) => {
       <div
         className={`flex gap-3 ${
           isHorizontal ? "flex-row" : "flex-col"
-        } text-zinc-500
+        } text-[#6a738b]
         `}
       >
         {items.map((item, index) => (

@@ -35,7 +35,7 @@ const Page = () => {
   };
 
   return (
-    <div className="w-1/2 bg-zinc-950 bg-opacity-75 backdrop-blur-sm text-zinc-100 p-4 rounded-md flex flex-col gap-4">
+    <div className="w-1/2 bg-zinc-950 bg-opacity-75 backdrop-blur-sm text-white p-4 rounded-md flex flex-col gap-4">
       <div className="text-3xl">Recuperação de Conta</div>
       <div className="text-xs">
         Por favor, nos informe o e-mail cadastrado na sua conta.
@@ -64,7 +64,7 @@ const Page = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-sky-900 hover:bg-sky-800 !text-zinc-100"
+                className="bg-sky-900 hover:bg-sky-800 !text-white"
               >
                 Enviar código de recuperação
               </Button>

@@ -19,12 +19,16 @@ const AlertsModal = ({ handleClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className={`w-[32rem] bg-[#2a3042]  rounded-md relative  transition-transform duration-300 ${showModal ? 'animate-fadeInUp' : 'opacity-0'}`}>
+      <div
+        className={`w-[32rem] bg-[#2a3042]  rounded-md relative  transition-transform duration-300 ${
+          showModal ? "animate-fadeInUp" : "opacity-0"
+        }`}
+      >
         <div className="flex items-center bg-[#1c202c] p-4 rounded-t-md justify-between mb-4">
           <h2 className="text-lg font-bold text-white">Alertas</h2>
           <button
             onClick={handleClose}
-            className="text-zinc-100 hover:text-red-600 focus:outline-none"
+            className="text-white hover:text-red-600 focus:outline-none"
           >
             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
           </button>
@@ -44,7 +48,9 @@ const AlertsModal = ({ handleClose }) => {
             {/* Display the last 5 alerts here */}
           </div>
           <div>
-            <label className="block text-white mb-2 mt-4">Filtrar por Variável</label>
+            <label className="block text-white mb-2 mt-4">
+              Filtrar por Variável
+            </label>
             <select
               value={selectedVariable}
               onChange={(e) => setSelectedVariable(e.target.value)}
@@ -61,7 +67,7 @@ const AlertsModal = ({ handleClose }) => {
 
         <div className="flex bg-[#1c202c] px-4 py-2 rounded-b-md justify-end mt-4">
           <Button
-            className="bg-slate-700 hover:bg-[#2a3042]/80 !text-zinc-100"
+            className="bg-slate-700 hover:bg-[#2a3042]/80 !text-white"
             onClick={handleClose}
           >
             Filtrar

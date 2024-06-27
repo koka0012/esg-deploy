@@ -41,7 +41,7 @@ const Page = () => {
   };
 
   return (
-    <div className="w-1/2 bg-zinc-950 bg-opacity-75 backdrop-blur-sm text-zinc-100 p-4 rounded-md flex flex-col gap-4">
+    <div className="w-1/2 bg-zinc-950 bg-opacity-75 backdrop-blur-sm text-white p-4 rounded-md flex flex-col gap-4">
       <div className="text-3xl">Bem vindo</div>
       <div className="text-xs">Por favor, insira seu login e senha.</div>
 
@@ -83,12 +83,12 @@ const Page = () => {
                     onChange={handleChange}
                   />
 
-                  <div className="text-[12px] text-zinc-100">Lembrar Senha</div>
+                  <div className="text-[12px] text-white">Lembrar Senha</div>
                 </div>
 
                 <Link
                   href="/auth/recoverpassword"
-                  className="text-[12px] text-zinc-100 hover:underline"
+                  className="text-[12px] text-white hover:underline"
                 >
                   Esqueceu a Senha?
                 </Link>
@@ -97,7 +97,7 @@ const Page = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-sky-900 hover:bg-sky-800 !text-zinc-100"
+                className="bg-sky-900 hover:bg-sky-800 !text-white"
               >
                 Login
               </Button>

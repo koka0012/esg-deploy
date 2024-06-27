@@ -19,11 +19,12 @@ import { Dock, VerticalBarChart, Label, Modal } from "@/app/components";
 import Card from "./components/Card";
 import Search from "./components/modals/Search";
 import Layer from "./components/modals/Layer";
-import Restrict from "./components/modals/Restrict";
 
-import AddTerritoryModal from "./components/modals/AddTerritoryModal";
+import AddTerritory from "./components/modals/AddTerritory";
+import Restrict from "./components/modals/Restrict";
+import Environment from "./components/modals/Environment";
+
 import SearchDockModal from "./components/modals/SearchDockModal";
-import EnvironmentalModal from "./components/modals/EnvironmentalModal";
 import ReportsModal from "./components/modals/ReportsModal";
 import AreaInsightsModal from "./components/modals/AreaInsightsModal";
 import AlertsModal from "./components/modals/AlertsModal";
@@ -32,9 +33,7 @@ export default function Page() {
   const [search, setSearch] = useState(false);
   const [layer, setLayer] = useState(false);
 
-  const [addTerritory, setAddTerritory] = useState(false);
   const [searchDock, setSearchDock] = useState(false);
-  const [environmental, setEnvironmental] = useState(false);
   const [reports, setReports] = useState(false);
   const [areaInsights, setAreaInsights] = useState(false);
   const [alerts, setAlerts] = useState(false);
@@ -42,7 +41,9 @@ export default function Page() {
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
 
+  const addTerritoryRef = useRef<any>(null);
   const restrictRef = useRef<any>(null);
+  const environmentRef = useRef<any>(null);
 
   const data = [
     { name: "Jan", uv: 200 },
@@ -89,19 +90,19 @@ export default function Page() {
       )}
 
       <Modal ref={restrictRef}>
-        <Restrict />
+        <Restrict onClose={() => restrictRef.current.close()} />
       </Modal>
 
-      {addTerritory && (
-        <AddTerritoryModal handleClose={() => setAddTerritory(false)} />
-      )}
+      <Modal ref={addTerritoryRef}>
+        <AddTerritory onClose={() => addTerritoryRef.current.close()} />
+      </Modal>
+
+      <Modal ref={environmentRef}>
+        <Environment onClose={() => environmentRef.current.close()} />
+      </Modal>
 
       {searchDock && (
         <SearchDockModal handleClose={() => setSearchDock(false)} />
-      )}
-
-      {environmental && (
-        <EnvironmentalModal handleClose={() => setEnvironmental(false)} />
       )}
 
       {reports && <ReportsModal handleClose={() => setReports(false)} />}
@@ -118,11 +119,11 @@ export default function Page() {
             direction="vertical"
             items={[
               {
-                icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
+                icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
                 handleClick: () => setSearch(true),
               },
               {
-                icon: <Square3Stack3DIcon className="w-8 text-zinc-100 p-1" />,
+                icon: <Square3Stack3DIcon className="w-8 text-white p-1" />,
                 handleClick: () => setLayer(true),
               },
             ]}
@@ -145,18 +146,16 @@ export default function Page() {
             direction="vertical"
             items={[
               {
+                icon: <ArrowsPointingOutIcon className="w-8 text-white p-1" />,
+              },
+              {
                 icon: (
-                  <ArrowsPointingOutIcon className="w-8 text-zinc-100 p-1" />
+                  <MagnifyingGlassPlusIcon className="w-8 text-white p-1" />
                 ),
               },
               {
                 icon: (
-                  <MagnifyingGlassPlusIcon className="w-8 text-zinc-100 p-1" />
-                ),
-              },
-              {
-                icon: (
-                  <MagnifyingGlassMinusIcon className="w-8 text-zinc-100 p-1" />
+                  <MagnifyingGlassMinusIcon className="w-8 text-white p-1" />
                 ),
               },
             ]}
@@ -170,35 +169,35 @@ export default function Page() {
           direction="horizontal"
           items={[
             {
-              icon: <PencilIcon className="w-8 text-zinc-100 p-1" />,
-              handleClick: () => setAddTerritory(true),
+              icon: <PencilIcon className="w-8 text-white p-1" />,
+              handleClick: () => addTerritoryRef.current.open(),
             },
             {
-              icon: <LockClosedIcon className="w-8 text-zinc-100 p-1" />,
+              icon: <LockClosedIcon className="w-8 text-white p-1" />,
               handleClick: () => restrictRef.current.open(),
             },
             {
-              icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
+              icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
               handleClick: () => setSearchDock(true),
             },
             {
-              icon: <GlobeAmericasIcon className="w-8 text-zinc-100 p-1" />,
-              handleClick: () => setEnvironmental(true),
+              icon: <GlobeAmericasIcon className="w-8 text-white p-1" />,
+              handleClick: () => environmentRef.current.open(),
             },
             {
               icon: (
-                <ClipboardDocumentListIcon className="w-8 text-zinc-100 p-1" />
+                <ClipboardDocumentListIcon className="w-8 text-white p-1" />
               ),
               handleClick: () => setReports(true),
             },
             {
               icon: (
-                <PresentationChartLineIcon className="w-8 text-zinc-100 p-1" />
+                <PresentationChartLineIcon className="w-8 text-white p-1" />
               ),
               handleClick: () => setAreaInsights(true),
             },
             {
-              icon: <ExclamationCircleIcon className="w-8 text-zinc-100 p-1" />,
+              icon: <ExclamationCircleIcon className="w-8 text-white p-1" />,
               handleClick: () => setAlerts(true),
             },
           ]}

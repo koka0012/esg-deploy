@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import OrbitalModal from "./OrbitalModal";
+import Orbital from "./Orbital";
 
 const LayerForm = () => {
   const [orbital, setOrbital] = useState(false);
@@ -62,7 +62,7 @@ const LayerForm = () => {
 
       {orbital && (
         <div ref={orbitalRef} className="absolute bottom-4 left-[5rem] z-10">
-          <OrbitalModal />
+          <Orbital />
         </div>
       )}
     </div>

@@ -5,7 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { Button } from "@/app/components";
 
-import Search from "./Search";
+import Search from "./modals/Search";
 
 const Navbar = () => {
   return (

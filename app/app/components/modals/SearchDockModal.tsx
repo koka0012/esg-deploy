@@ -67,12 +67,16 @@ const SearchDockModal = ({ handleClose }) => {
 
   return (
     <div className="fixed inset-1 flex items-center justify-center">
-      <div className={`w-[32rem] bg-[#2a3042] rounded-md absolute bottom-20 transition-transform duration-300 ${showModal ? 'animate-fadeInUp' : 'opacity-0'}`}>
+      <div
+        className={`w-[32rem] bg-[#2a3042] rounded-md absolute bottom-20 transition-transform duration-300 ${
+          showModal ? "animate-fadeInUp" : "opacity-0"
+        }`}
+      >
         <div className="flex bg-[#1c202c] rounded-t-md p-4 items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-white">Pesquisar</h2>
           <button
             onClick={handleClose}
-            className="text-zinc-100 hover:text-red-600 focus:outline-none"
+            className="text-white hover:text-red-600 focus:outline-none"
           >
             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
           </button>
@@ -92,7 +96,7 @@ const SearchDockModal = ({ handleClose }) => {
                     onClick={() => {
                       setShowCriteria(true);
                     }}
-                    className="bg-[#1c202c] hover:bg-[#1c202c]/80 !text-zinc-100"
+                    className="bg-[#1c202c] hover:bg-[#1c202c]/80 !text-white"
                   >
                     Relatório PDF de Compliance
                   </Button>
@@ -100,7 +104,7 @@ const SearchDockModal = ({ handleClose }) => {
                   <div>
                     <Button
                       type="submit"
-                      className="bg-[#1c202c] hover:bg-[#1c202c]/80 !text-zinc-100 mr-2"
+                      className="bg-[#1c202c] hover:bg-[#1c202c]/80 !text-white mr-2"
                     >
                       Pesquisar
                     </Button>
@@ -116,7 +120,7 @@ const SearchDockModal = ({ handleClose }) => {
               <div className="flex justify-center">
                 <Button
                   onClick={() => setShowCriteria(!showCriteria)}
-                  className="bg-[#1c202c] hover:bg-[#1c202c]/80 !text-zinc-100 mr-2 mb-4"
+                  className="bg-[#1c202c] hover:bg-[#1c202c]/80 !text-white mr-2 mb-4"
                 >
                   {showCriteria ? "Salvar Critérios" : null}
                 </Button>
@@ -140,7 +144,10 @@ const SearchDockModal = ({ handleClose }) => {
                       }}
                       className="mr-2 text-[#4a5568] focus:ring-[#4a5568] h-4 w-4"
                     />
-                    <label htmlFor={item} className="text-zinc-100 text-[12px] mb-1">
+                    <label
+                      htmlFor={item}
+                      className="text-white text-[12px] mb-1"
+                    >
                       {item}
                     </label>
                   </div>
@@ -149,7 +156,7 @@ const SearchDockModal = ({ handleClose }) => {
             </div>
           ) : null}
         </div>
-        <div className="flex flex-col gap-4 items-center justify-center bg-[#1c202c] rounded-b-md p-4 mt-4"/>
+        <div className="flex flex-col gap-4 items-center justify-center bg-[#1c202c] rounded-b-md p-4 mt-4" />
       </div>
     </div>
   );
