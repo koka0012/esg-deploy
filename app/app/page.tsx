@@ -23,17 +23,14 @@ import Layer from "./components/modals/Layer";
 import AddTerritory from "./components/modals/AddTerritory";
 import Restrict from "./components/modals/Restrict";
 import Environment from "./components/modals/Environment";
-
-import SearchDockModal from "./components/modals/SearchDockModal";
-import ReportsModal from "./components/modals/Reports";
-import AreaInsightsModal from "./components/modals/AreaInsightsModal";
-import AlertsModal from "./components/modals/Alerts";
 import Reports from "./components/modals/Reports";
 import Alerts from "./components/modals/Alerts";
+import SearchDock from "./components/modals/SearchDock";
 
 export default function Page() {
   const [search, setSearch] = useState(false);
   const [layer, setLayer] = useState(false);
+  const [searchDock, setSearchDock] = useState(false);
 
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
@@ -75,15 +72,21 @@ export default function Page() {
   }, []);
 
   return (
-    <div className=" w-full h-full pointer-events-none relative " >
+    <div className=" w-full h-full pointer-events-none relative">
       {search && (
-        <div ref={searchRef} className="absolute top-4 left-[6rem] z-10 pointer-events-auto">
+        <div
+          ref={searchRef}
+          className="absolute top-3 left-[5rem] z-10 pointer-events-auto"
+        >
           <Search />
         </div>
       )}
 
       {layer && (
-        <div ref={layerRef} className="absolute top-[8.5rem] z-10 pointer-events-auto">
+        <div
+          ref={layerRef}
+          className="absolute top-[4.5rem] left-[5rem] z-10 pointer-events-auto"
+        >
           <Layer />
         </div>
       )}
@@ -96,6 +99,12 @@ export default function Page() {
         <AddTerritory onClose={() => addTerritoryRef.current.close()} />
       </Modal>
 
+      {searchDock && (
+        <div className="absolute bottom-[5.55rem] inset-x-0 flex justify-center z-10 pointer-events-auto">
+          <SearchDock onClose={() => setSearchDock(false)} />
+        </div>
+      )}
+
       <Modal ref={environmentRef}>
         <Environment onClose={() => environmentRef.current.close()} />
       </Modal>
@@ -106,6 +115,7 @@ export default function Page() {
           onSearch={() => reportsRef.current.close()}
         />
       </Modal>
+
       <Modal ref={alertsRef}>
         <Alerts onClose={() => alertsRef.current.close()} />
       </Modal>
@@ -128,15 +138,15 @@ export default function Page() {
       </div>
 
       <div className="absolute right-3 top-0 bottom-0 flex flex-row gap-3 py-3">
-        <div
-        >
+        <div>
           <div className="flex flex-col gap-4 pointer-events-auto">
             <Card title="Grafico" content={<VerticalBarChart data={data} />} />
+
             <Card title="Legenda" content={<Label />} />
           </div>
         </div>
-        <div className="self-center">
 
+        <div className="self-center">
           <Dock
             direction="vertical"
             items={[
@@ -173,6 +183,7 @@ export default function Page() {
             },
             {
               icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
+              handleClick: () => setSearchDock(!searchDock),
             },
             {
               icon: <GlobeAmericasIcon className="w-8 text-white p-1" />,
