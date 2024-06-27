@@ -11,20 +11,21 @@ interface DockProps {
   direction: "horizontal" | "vertical";
   items: DockItem[];
   style: "dock" | "button";
+  className?: string
 }
 
-export const Dock: React.FC<DockProps> = ({ direction, items, style }) => {
+export const Dock: React.FC<DockProps> = ({ direction, items, style, className }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const isHorizontal = direction === "horizontal";
 
-  const dockStyles = `${
+  const dockStyles = `${className ?? ''} pointer-events-auto ${
     isHorizontal ? "h-full" : "w-full"
   } bg-[#2a3042] bg-opacity-50 backdrop-blur-md p-3 flex items-center justify-center rounded-2xl shadow-lg transition-transform duration-300 ${
     hoveredIndex !== null ? "scale-105" : "scale-100"
   }`;
 
-  const buttonStyles = `flex items-center justify-center`;
+  const buttonStyles = `flex items-center justify-center pointer-events-auto`;
 
   return (
     <div className={style === "dock" ? dockStyles : buttonStyles}>
