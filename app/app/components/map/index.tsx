@@ -118,7 +118,7 @@ export function Map({ apiToken }: IMapProps) {
     getFillColor: () => [164,193,73],
     getLineWidth: () => 10,
     getLineColor: () => [164,193,73],
-    opacity: 0.5,
+    opacity: 0.35,
     filled: true,
     stroked: true,
   })
@@ -136,7 +136,7 @@ export function Map({ apiToken }: IMapProps) {
       controller>
       <PrimitiveMap
         mapboxAccessToken='pk.eyJ1IjoiYXVndXN0by1zcGVjdHJheCIsImEiOiJjbHh4ZnNyOWUxN3Q2Mmtwcjlnbml2NGtrIn0.felXsgObrwgY5m-ew68RFA'
-        mapStyle="mapbox://styles/mapbox/satellite-v9"
+        mapStyle="mapbox://styles/mapbox/streets-v9"
       >
       </PrimitiveMap>
     </DeckGL>
