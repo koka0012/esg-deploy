@@ -64,13 +64,13 @@ const AreaInsights = ({ onClose }: AreaInsightsProps) => {
             </div>
 
             <div className="flex flex-row bg-[#2f3549] p-2 min-h-[12rem] h-[10rem] gap-2 justify-between">
-              <div className="grow bg-[#2a3042] rounded-md p-2">
+              <div className="grow bg-[#2a3042] rounded-md p-2 text-white">
                 Grafico Exemplo 1
               </div>
-              <div className="grow bg-[#2a3042] rounded-md p-2">
+              <div className="grow bg-[#2a3042] rounded-md p-2 text-white">
                 Grafico Exemplo 2
               </div>
-              <div className="grow bg-[#2a3042] rounded-md p-2">
+              <div className="grow bg-[#2a3042] rounded-md p-2 text-white">
                 Grafico Exemplo 3
               </div>
             </div>
