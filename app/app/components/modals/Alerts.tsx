@@ -49,20 +49,20 @@ const Alerts = ({ onClose }: AlertsProps) => {
             <div className="bg-[#2f3549] p-4">
               <ul>
                 <div className="flex flex-col gap-2">
-                  <div className="text-white  p-2  rounded-md bg-[#2a3042]">
-                    Alerta 1
+                  <div className="text-zinc-300  p-2  rounded-md bg-[#2a3042]">
+                    Alerta de queimada em -11.862016,-55.5024384 !
                   </div>
-                  <div className="text-white  p-2 rounded-md bg-[#2a3042]">
-                    Alerta 2
+                  <div className="text-zinc-300  p-2 rounded-md bg-[#2a3042]">
+                    Nova area desmatada detectada ( -41.86586, 92.6541584 ) !
                   </div>
-                  <div className="text-white p-2 rounded-md bg-[#2a3042]">
-                    Alerta 3
+                  <div className="text-zinc-300 p-2 rounded-md bg-[#2a3042]">
+                    Alerta de desmatamento em ( 12.15493, 65.5841951 )
                   </div>
-                  <div className="text-white p-2 rounded-md bg-[#2a3042]">
-                    Alerta 4
+                  <div className="text-zinc-300 p-2 rounded-md bg-[#2a3042]">
+                    Alerta Exemplo 4
                   </div>
-                  <div className="text-white p-2 rounded-md bg-[#2a3042]">
-                    Alerta 5
+                  <div className="text-zinc-300 p-2 rounded-md bg-[#2a3042]">
+                    Alerta Exemplo 5
                   </div>
                 </div>
               </ul>
@@ -80,7 +80,6 @@ const Alerts = ({ onClose }: AlertsProps) => {
                 }))}
                 error={errors.filterType}
               />
-              <div className="flex justify-end"></div>
             </div>
 
             <div className=" px-4 py-2 bg-[#2a3042] flex justify-between">

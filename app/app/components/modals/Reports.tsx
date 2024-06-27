@@ -34,7 +34,7 @@ const Reports = ({ onClose, onSearch }: ReportsProps) => {
         <Form>
           <div className="w-[80vw] max-w-[40rem] rounded-md shadow-md overflow-hidden">
             <div className="bg-[#2a3042] text-white p-4 flex justify-between items-center">
-              <div>Pesquisar</div>
+              <div>Relatoriós</div>
               <button type="button" onClick={onClose}>
                 <XMarkIcon className="w-5" />
               </button>
