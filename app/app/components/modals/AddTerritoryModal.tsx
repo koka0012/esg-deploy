@@ -18,7 +18,7 @@ interface FormValues {
   bioma: string;
 }
 
-const AddTerritoryModal = ({ handleClose }) => {
+const AddTerritoryModal = ({ handleClose }: any) => {
   const initialValues: FormValues = {
     id: "",
     numero_car: "",
@@ -127,7 +127,7 @@ const AddTerritoryModal = ({ handleClose }) => {
                       label="Data do Cadastro Restrito"
                       type="date"
                       value={values.data_cadastro_restrito}
-                      disabled
+                      handleChange={() => null}
                     />
                   </div>
                   <div className="col-span-1">

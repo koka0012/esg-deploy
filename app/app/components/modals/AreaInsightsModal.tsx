@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/app/components";
 
-const AreaInsightsModal = ({ handleClose }) => {
+const AreaInsightsModal = ({ handleClose }: any) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
