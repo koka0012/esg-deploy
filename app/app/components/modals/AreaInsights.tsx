@@ -20,6 +20,8 @@ interface FormValues {
 
 export interface AreaInsightsProps {
   onClose: () => void;
+
+  
 }
 
 const AreaInsights = ({ onClose }: AreaInsightsProps) => {

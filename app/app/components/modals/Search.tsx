@@ -30,7 +30,7 @@ const SearchModal = () => {
   };
 
   return (
-    <div className="w-[24rem] bg-[#2a3042] bg-opacity-50 backdrop-blur-md p-4 rounded-md">
+    <div className="w-[24rem] bg-[#2a3042] bg-opacity-50 backdrop-blur-md p-4 rounded-md animate-fadeInRight transition-transform duration-300">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ values, handleChange, errors, isSubmitting }) => (
           <Form>

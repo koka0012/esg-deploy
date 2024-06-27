@@ -32,7 +32,7 @@ const OrbitalModal = () => {
   };
 
   return (
-    <div className="bg-[#2a3042] p-2 rounded-md">
+    <div className="bg-[#2a3042] p-2 rounded-md animate-fadeInRight transition-transform duration-300">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ values, setFieldValue, errors, submitForm }) => (
           <Form>

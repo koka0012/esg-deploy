@@ -8,7 +8,7 @@ const LayerForm = () => {
   const [orbital, setOrbital] = useState(false);
 
   return (
-    <div className="bg-[#2a3042] bg-opacity-50 backdrop-blur-md text-xs text-white p-4 rounded-md grid grid-cols-4 gap-4">
+    <div className="bg-[#2a3042] bg-opacity-50 backdrop-blur-md text-xs text-white p-4 rounded-md grid grid-cols-4 gap-4  animate-fadeInRight transition-transform duration-300">
       <button
         type="button"
         className="flex flex-col items-center gap-2"
