@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useState } from "react";
 
@@ -70,13 +71,13 @@ const Search = () => {
   };
 
   return (
-    <div className="w-[16rem] relative">
+    <div className="relative">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ values, handleChange, errors }) => (
           <Form>
             <button
               type="button"
-              className="w-full bg-[#2f3549] text-sm text-white p-2 rounded-md flex justify-between items-center"
+              className="w-full bg-[#2f3549] text-sm text-white p-2 rounded-md flex justify-between items-center gap-2"
               onClick={toggleDropdown}
             >
               <img
@@ -87,6 +88,12 @@ const Search = () => {
               />
 
               <div>{selectedOption.label}</div>
+
+              <ChevronDownIcon
+                className={`w-4 ${
+                  isDropdownOpen ? "rotate-1" : "rotate-180"
+                } transition-all duration-150`}
+              />
             </button>
 
             {isDropdownOpen && (
@@ -94,7 +101,7 @@ const Search = () => {
                 {options.map((option, index) => (
                   <li
                     key={index}
-                    className="hover:bg-[#3c435a] rounded-md cursor-pointer flex justify-between items-center transition-all duration-150"
+                    className="hover:bg-[#3c435a] rounded-md cursor-pointer flex items-center gap-2 transition-all duration-150"
                     onClick={() => handleOptionClick(option)}
                   >
                     <img
