@@ -44,16 +44,16 @@ export default function Page() {
   const alertsRef = useRef<any>(null);
 
   const data = [
-    { name: "Jan", uv: 200 },
-    { name: "Feb", uv: 400 },
-    { name: "Mar", uv: 800 },
-    { name: "Apr", uv: 1000 },
-    { name: "May", uv: 1200 },
-    { name: "Jun", uv: 1600 },
-    { name: "Jul", uv: 1800 },
-    { name: "Ago", uv: 2000 },
-    { name: "Set", uv: 2400 },
-    { name: "Oct", uv: 2800 },
+    { name: "Jan", uv: 0 },
+    { name: "Feb", uv: 50 },
+    { name: "Mar", uv: 100 },
+    { name: "Apr", uv: 200 },
+    { name: "May", uv: 1000 },
+    { name: "Jun", uv: 1500 },
+    { name: "Jul", uv: 2300 },
+    { name: "Ago", uv: 3000 },
+    { name: "Set", uv: 3250 },
+    { name: "Oct", uv: 3500 },
   ];
 
   useEffect(() => {
