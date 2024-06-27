@@ -76,15 +76,15 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="h-full  p-4 flex flex-1 flex-col gap-4 relative">
+    <div className=" w-full h-full pointer-events-none relative " >
       {search && (
-        <div ref={searchRef} className="absolute top-4 left-[6rem] z-10">
+        <div ref={searchRef} className="absolute top-4 left-[6rem] z-10 pointer-events-auto">
           <Search />
         </div>
       )}
 
       {layer && (
-        <div ref={layerRef} className="absolute top-[8.5rem] z-10">
+        <div ref={layerRef} className="absolute top-[8.5rem] z-10 pointer-events-auto">
           <Layer />
         </div>
       )}
@@ -113,35 +113,33 @@ export default function Page() {
 
       {alerts && <AlertsModal handleClose={() => setAlerts(false)} />}
 
-      <div className="flex flex-1 gap-4">
-        <div className="w-[4rem]">
-          <Dock
-            direction="vertical"
-            items={[
-              {
-                icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
-                handleClick: () => setSearch(true),
-              },
-              {
-                icon: <Square3Stack3DIcon className="w-8 text-white p-1" />,
-                handleClick: () => setLayer(true),
-              },
-            ]}
-            style="button"
-          />
-        </div>
+      <div className="absolute top-3 left-3">
+        <Dock
+          direction="vertical"
+          items={[
+            {
+              icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setSearch(true),
+            },
+            {
+              icon: <Square3Stack3DIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setLayer(true),
+            },
+          ]}
+          style="button"
+        />
+      </div>
 
+      <div className="absolute right-3 top-0 bottom-0 flex flex-row gap-3 py-3">
         <div
-          className="flex flex-1 justify-end"
-          style={{ height: "calc(90vh - 112px)" }}
         >
-          <div className="w-1/5 md:w-1/5 flex flex-col gap-4">
+          <div className="flex flex-col gap-4 pointer-events-auto">
             <Card title="Grafico" content={<VerticalBarChart data={data} />} />
             <Card title="Legenda" content={<Label />} />
           </div>
         </div>
+        <div className="self-center">
 
-        <div className="w-[4rem] flex items-center">
           <Dock
             direction="vertical"
             items={[
@@ -164,7 +162,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="h-[4rem] flex justify-center">
+      <div className="absolute right-0 mx-auto left-0 bottom-3 flex justify-center ">
         <Dock
           direction="horizontal"
           items={[

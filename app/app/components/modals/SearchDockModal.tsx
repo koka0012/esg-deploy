@@ -41,7 +41,7 @@ const criteriaItems = [
   "Qualidade da Pastagem",
 ];
 
-const SearchDockModal = ({ handleClose }) => {
+const SearchDockModal = ({ handleClose }: any) => {
   const initialValues: FormValues = {
     searchQuery: "",
   };
@@ -89,7 +89,7 @@ const SearchDockModal = ({ handleClose }) => {
                   name="searchQuery"
                   label="Pesquisar por CPF/CNPJ, Matrícula, ID ou CAR"
                   value={values.searchQuery}
-                  onChange={handleChange}
+                  handleChange={handleChange}
                 />
                 <div className="flex justify-between mt-4">
                   <Button
