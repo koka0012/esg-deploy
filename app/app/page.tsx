@@ -25,18 +25,15 @@ import Restrict from "./components/modals/Restrict";
 import Environment from "./components/modals/Environment";
 
 import SearchDockModal from "./components/modals/SearchDockModal";
-import ReportsModal from "./components/modals/ReportsModal";
+import ReportsModal from "./components/modals/Reports";
 import AreaInsightsModal from "./components/modals/AreaInsightsModal";
-import AlertsModal from "./components/modals/AlertsModal";
+import AlertsModal from "./components/modals/Alerts";
+import Reports from "./components/modals/Reports";
+import Alerts from "./components/modals/Alerts";
 
 export default function Page() {
   const [search, setSearch] = useState(false);
   const [layer, setLayer] = useState(false);
-
-  const [searchDock, setSearchDock] = useState(false);
-  const [reports, setReports] = useState(false);
-  const [areaInsights, setAreaInsights] = useState(false);
-  const [alerts, setAlerts] = useState(false);
 
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
@@ -44,6 +41,8 @@ export default function Page() {
   const addTerritoryRef = useRef<any>(null);
   const restrictRef = useRef<any>(null);
   const environmentRef = useRef<any>(null);
+  const reportsRef = useRef<any>(null);
+  const alertsRef = useRef<any>(null);
 
   const data = [
     { name: "Jan", uv: 200 },
@@ -101,17 +100,15 @@ export default function Page() {
         <Environment onClose={() => environmentRef.current.close()} />
       </Modal>
 
-      {searchDock && (
-        <SearchDockModal handleClose={() => setSearchDock(false)} />
-      )}
-
-      {reports && <ReportsModal handleClose={() => setReports(false)} />}
-
-      {areaInsights && (
-        <AreaInsightsModal handleClose={() => setAreaInsights(false)} />
-      )}
-
-      {alerts && <AlertsModal handleClose={() => setAlerts(false)} />}
+      <Modal ref={reportsRef}>
+        <Reports
+          onClose={() => reportsRef.current.close()}
+          onSearch={() => reportsRef.current.close()}
+        />
+      </Modal>
+      <Modal ref={alertsRef}>
+        <Alerts onClose={() => alertsRef.current.close()} />
+      </Modal>
 
       <div className="absolute top-3 left-3">
         <Dock
@@ -176,7 +173,6 @@ export default function Page() {
             },
             {
               icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
-              handleClick: () => setSearchDock(true),
             },
             {
               icon: <GlobeAmericasIcon className="w-8 text-white p-1" />,
@@ -186,17 +182,16 @@ export default function Page() {
               icon: (
                 <ClipboardDocumentListIcon className="w-8 text-white p-1" />
               ),
-              handleClick: () => setReports(true),
+              handleClick: () => reportsRef.current.open(),
             },
             {
               icon: (
                 <PresentationChartLineIcon className="w-8 text-white p-1" />
               ),
-              handleClick: () => setAreaInsights(true),
             },
             {
               icon: <ExclamationCircleIcon className="w-8 text-white p-1" />,
-              handleClick: () => setAlerts(true),
+              handleClick: () => alertsRef.current.open(),
             },
           ]}
           style="dock"
