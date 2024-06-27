@@ -1,7 +1,7 @@
 'use client'
-import { _WMSLayer as WMSLayer, TileLayer, GeoBoundingBox, NonGeoBoundingBox } from '@deck.gl/geo-layers/typed';
-import {BitmapLayer} from '@deck.gl/layers/typed'
-import { DeckGL  } from '@deck.gl/react/typed';
+import { _WMSLayer as WMSLayer, TileLayer, GeoBoundingBox, NonGeoBoundingBox } from '@deck.gl/geo-layers';
+import {BitmapLayer} from '@deck.gl/layers'
+import { DeckGL  } from '@deck.gl/react';
 import PrimitiveMap from 'react-map-gl';
 import { WMSService } from '@loaders.gl/wms'
 import { reduce } from 'lodash'
@@ -75,7 +75,6 @@ export function Map({ apiToken }: IMapProps) {
       const bbox = tile.bbox as GeoBoundingBox
       const [west, south] = proj4('EPSG:4326', 'EPSG:3857', [bbox.west, bbox.south]);
       const [east, north] = proj4('EPSG:4326', 'EPSG:3857', [bbox.east, bbox.north]);
-      console.log(bbox)
 
       const qp = new URLSearchParams()
       qp.append('sc', 'admin')
@@ -102,6 +101,7 @@ export function Map({ apiToken }: IMapProps) {
     renderSubLayers: (props) => {
       const {west, south, east, north} = props.tile.bbox as GeoBoundingBox
       return new BitmapLayer(props, {
+        data: null as unknown as undefined,
         image: props.data,
         opacity: 1,
         transparentColor: [255, 255, 255, 0],
