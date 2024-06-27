@@ -53,7 +53,7 @@ const AreaInsights = ({ onClose }: AreaInsightsProps) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, handleChange, errors, isSubmitting }) => (
         <Form>
-          <div className="w-[85vw] max-w-[72rem] rounded-md shadow-md overflow-hidden transition-transform duration-300 animate-fadeInUp">
+          <div className="w-[68vw] rounded-md shadow-md overflow-hidden transition-transform duration-300 animate-fadeInUp">
             <div className="bg-[#2a3042] text-white p-4 flex justify-between items-center">
               <div>Insights de Área</div>
               <button type="button" onClick={onClose}>
@@ -61,7 +61,7 @@ const AreaInsights = ({ onClose }: AreaInsightsProps) => {
               </button>
             </div>
 
-            <div className="flex flex-row bg-[#2f3549] h-[14vw] p-2 gap-2 justify-between">
+            <div className="flex flex-row bg-[#2f3549] p-2 min-h-[12rem] h-[10rem] gap-2 justify-between">
               <div className="grow bg-[#2a3042] rounded-md p-2">
                 Grafico Exemplo 1
               </div>
@@ -72,8 +72,6 @@ const AreaInsights = ({ onClose }: AreaInsightsProps) => {
                 Grafico Exemplo 3
               </div>
             </div>
-
-            <div className="bg-[#2a3042] p-4 flex justify-end"></div>
           </div>
         </Form>
       )}
