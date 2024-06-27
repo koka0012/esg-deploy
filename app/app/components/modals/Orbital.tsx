@@ -32,14 +32,15 @@ const OrbitalModal = () => {
   };
 
   return (
-    <div className="w-[14rem] bg-[#2a3042] p-3 rounded-md">
+    <div className="bg-[#2a3042] p-2 rounded-md">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ values, setFieldValue, errors, submitForm }) => (
           <Form>
-            <div className="flex gap-3">
+            <div className="flex items-center gap-2">
+              <div>De</div>
+
               <Select
                 name="from"
-                label="Data Inicial"
                 value={values.from}
                 handleChange={(e) => {
                   setFieldValue("from", e.value);
@@ -52,9 +53,10 @@ const OrbitalModal = () => {
                 options={options}
               />
 
+              <div>até</div>
+
               <Select
                 name="to"
-                label="Data Final"
                 value={values.to}
                 handleChange={(e) => {
                   setFieldValue("to", e.value);

@@ -78,7 +78,7 @@ export default function Page() {
       {search && (
         <div
           ref={searchRef}
-          className="absolute top-3 left-[5rem] z-10 pointer-events-auto"
+          className="absolute top-3 left-[4.6rem] z-10 pointer-events-auto"
         >
           <Search />
         </div>
@@ -87,7 +87,7 @@ export default function Page() {
       {layer && (
         <div
           ref={layerRef}
-          className="absolute top-[4.5rem] left-[5rem] z-10 pointer-events-auto"
+          className="absolute top-[4.5rem] left-[4.6rem] z-10 pointer-events-auto"
         >
           <Layer />
         </div>
@@ -106,6 +106,7 @@ export default function Page() {
           <SearchDock onClose={() => setSearchDock(false)} />
         </div>
       )}
+
       {insights && (
         <div className="absolute bottom-[5.55rem] inset-x-0 flex justify-center z-10 pointer-events-auto">
           <AreaInsights onClose={() => setInsights(false)} />
@@ -190,7 +191,10 @@ export default function Page() {
             },
             {
               icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
-              handleClick: () => setSearchDock(!searchDock),
+              handleClick: () => {
+                setSearchDock(!searchDock);
+                setInsights(false);
+              },
             },
             {
               icon: <GlobeAmericasIcon className="w-8 text-white p-1" />,
@@ -206,7 +210,10 @@ export default function Page() {
               icon: (
                 <PresentationChartLineIcon className="w-8 text-white p-1" />
               ),
-              handleClick: () => setInsights(!searchDock),
+              handleClick: () => {
+                setInsights(!insights);
+                setSearchDock(false);
+              },
             },
             {
               icon: <ExclamationCircleIcon className="w-8 text-white p-1" />,

@@ -6,46 +6,43 @@ import Orbital from "./Orbital";
 
 const LayerForm = () => {
   const [orbital, setOrbital] = useState(false);
-  const orbitalRef = useRef<any>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (orbitalRef.current && !orbitalRef.current.contains(event.target)) {
-        setOrbital(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
-    <div className="bg-[#2a3042] bg-opacity-50 backdrop-blur-md text-xs text-white p-3 rounded-md flex flex-col gap-2 relative">
-      <button type="button" className="flex flex-col items-center gap-2">
+    <div className="bg-[#2a3042] bg-opacity-50 backdrop-blur-md text-xs text-white p-4 rounded-md grid grid-cols-4 gap-4">
+      <button
+        type="button"
+        className="flex flex-col items-center gap-2"
+        onClick={() => setOrbital(false)}
+      >
         <img
           src="Images/pin_map.png"
-          className="w-[2.5rem] aspect-square rounded-md"
+          className="w-[4rem] aspect-square rounded-md"
         />
-        <div className="w-[2.5rem] flex justify-center">Mapa</div>
+        <div className="w-[4rem] flex justify-center">Padrão</div>
       </button>
 
-      <button type="button" className="flex flex-col items-center gap-2">
+      <button
+        type="button"
+        className="flex flex-col items-center gap-2"
+        onClick={() => setOrbital(false)}
+      >
         <img
           src="Images/pin_satelite.png"
-          className="w-[2.5rem] aspect-square rounded-md"
+          className="w-[4rem] aspect-square rounded-md"
         />
-        <div className="w-[2.5rem] flex justify-center">Satélite</div>
+        <div className="w-[4rem] flex justify-center">Satélite</div>
       </button>
 
-      <button type="button" className="flex flex-col items-center gap-2">
+      <button
+        type="button"
+        className="flex flex-col items-center gap-2"
+        onClick={() => setOrbital(false)}
+      >
         <img
           src="Images/pin_relevo.png"
-          className="w-[2.5rem] aspect-square rounded-md"
+          className="w-[4rem] aspect-square rounded-md"
         />
-        <div className="w-[2.5rem] flex justify-center">Relevo</div>
+        <div className="w-[4rem] flex justify-center">Relevo</div>
       </button>
 
       <button
@@ -55,13 +52,13 @@ const LayerForm = () => {
       >
         <img
           src="Images/pin_orbital.png"
-          className="w-[2.5rem] aspect-square rounded-md"
+          className="w-[4rem] aspect-square rounded-md"
         />
-        <div className="w-[2.5rem] flex justify-center">Mapa Orbital</div>
+        <div className="w-[4rem] flex justify-center">Orbital</div>
       </button>
 
       {orbital && (
-        <div ref={orbitalRef} className="absolute bottom-4 left-[5rem] z-10">
+        <div className="col-span-full">
           <Orbital />
         </div>
       )}

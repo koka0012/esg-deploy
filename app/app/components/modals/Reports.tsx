@@ -32,7 +32,7 @@ const Reports = ({ onClose, onSearch }: ReportsProps) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, handleChange, errors, isSubmitting }) => (
         <Form>
-          <div className="w-[80vw] max-w-[40rem] rounded-md shadow-md overflow-hidden">
+          <div className="w-[80vw] max-w-[60rem] rounded-md shadow-md overflow-hidden">
             <div className="bg-[#2a3042] text-white p-4 flex justify-between items-center">
               <div>Relatoriós</div>
               <button type="button" onClick={onClose}>
