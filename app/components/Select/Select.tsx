@@ -42,9 +42,12 @@ export const Select = ({
           error ? "bg-red-300/50" : "bg-[#3c435a]/50"
         } p-2 rounded-md`}
       >
-        <option value="" className="bg-[#3c435a]">
-          {placeholder ?? "Selecione"}
-        </option>
+        {placeholder && (
+          <option value="" className="bg-[#3c435a]">
+            {placeholder}
+          </option>
+        )}
+
         {options.map((option: Option, key: number) => (
           <option key={key} value={option.value} className="bg-[#3c435a]">
             {option.label}

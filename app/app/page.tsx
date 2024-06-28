@@ -1,32 +1,43 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { Dock, Label, Modal } from "@/app/components";
 import {
-  PencilIcon,
-  MagnifyingGlassIcon,
-  Square3Stack3DIcon,
-  GlobeAmericasIcon,
-  ClipboardDocumentListIcon,
-  PresentationChartLineIcon,
   ArrowsPointingOutIcon,
-  MagnifyingGlassPlusIcon,
-  MagnifyingGlassMinusIcon,
+  ClipboardDocumentListIcon,
   ExclamationCircleIcon,
+  GlobeAmericasIcon,
   LockClosedIcon,
+  MagnifyingGlassIcon,
+  MagnifyingGlassMinusIcon,
+  MagnifyingGlassPlusIcon,
+  PencilIcon,
+  PresentationChartLineIcon,
+  Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
-import { Dock, VerticalBarChart, Label, Modal } from "@/app/components";
-
+import dynamic from 'next/dynamic';
+import { Suspense, useEffect, useRef, useState } from "react";
 import Card from "./components/Card";
-import Search from "./components/modals/Search";
-import Layer from "./components/modals/Layer";
-
 import AddTerritory from "./components/modals/AddTerritory";
-import Restrict from "./components/modals/Restrict";
-import Environment from "./components/modals/Environment";
-import Reports from "./components/modals/Reports";
 import Alerts from "./components/modals/Alerts";
-import SearchDock from "./components/modals/SearchDock";
 import AreaInsights from "./components/modals/AreaInsights";
+import Environment from "./components/modals/Environment";
+import Layer from "./components/modals/Layer";
+import Reports from "./components/modals/Reports";
+import Restrict from "./components/modals/Restrict";
+import Search from "./components/modals/Search";
+import SearchDock from "./components/modals/SearchDock";
+import Skeleton from "react-loading-skeleton";
+
+
+const VerticalBarChart = dynamic(() => import('@/app/components/Charts/VerticalBarChart').then(
+  mod => mod.VerticalBarChart),
+  {
+    ssr: false,
+    loading: () => (
+      <Skeleton inline className="h-40"/>
+    )
+
+  })
 
 export default function Page() {
   const [search, setSearch] = useState(false);
@@ -43,18 +54,23 @@ export default function Page() {
   const reportsRef = useRef<any>(null);
   const alertsRef = useRef<any>(null);
 
-  const data = [
-    { name: "Jan", uv: 0 },
-    { name: "Feb", uv: 50 },
-    { name: "Mar", uv: 100 },
-    { name: "Apr", uv: 200 },
-    { name: "May", uv: 1000 },
-    { name: "Jun", uv: 1500 },
-    { name: "Jul", uv: 2300 },
-    { name: "Ago", uv: 3000 },
-    { name: "Set", uv: 3250 },
-    { name: "Oct", uv: 3500 },
-  ];
+  // const data = [
+  //   { name: "Jan", uv: 0 },
+  //   { name: "Feb", uv: 50 },
+  //   { name: "Mar", uv: 100 },
+  //   { name: "Apr", uv: 200 },
+  //   { name: "May", uv: 1000 },
+  //   { name: "Jun", uv: 1500 },
+  //   { name: "Jul", uv: 2300 },
+  //   { name: "Ago", uv: 3000 },
+  //   { name: "Set", uv: 3250 },
+  //   { name: "Oct", uv: 3500 },
+  // ];
+
+  const data = new Array(30).fill(0).map((_, i) => ({
+    name: i,
+    uv: Math.round(i * 10000 + (Math.random() * (5000 - 2000) + 2000))
+  }))
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -148,7 +164,9 @@ export default function Page() {
       <div className="absolute right-3 top-0 bottom-0 flex flex-row gap-3 py-3">
         <div>
           <div className="flex flex-col gap-4 pointer-events-auto">
-            <Card title="Grafico" content={<VerticalBarChart data={data} />} />
+            <Card title="Gráfico" content={
+              <VerticalBarChart data={data} />
+            } />
 
             <Card title="Legenda" content={<Label />} />
           </div>
