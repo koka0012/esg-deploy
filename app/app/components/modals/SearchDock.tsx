@@ -144,7 +144,7 @@ const SearchDock = ({ onClose }: SearchDockProps) => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#2f3549] hover:bg-[#394055] !text-white font-bold text-[16px]"
+                className="bg-[#2f3549] hover:bg-[#394055] !text-white"
               >
                 Pesquisar
               </Button>

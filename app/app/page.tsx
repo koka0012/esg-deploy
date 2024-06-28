@@ -15,7 +15,7 @@ import {
   Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
 import dynamic from "next/dynamic";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Card from "./components/Card";
 import AddTerritory from "./components/modals/AddTerritory";
 import Alerts from "./components/modals/Alerts";
@@ -27,6 +27,7 @@ import Restrict from "./components/modals/Restrict";
 import Search from "./components/modals/Search";
 import SearchDock from "./components/modals/SearchDock";
 import Skeleton from "react-loading-skeleton";
+import LoginRestrict from "./components/modals/LoginRestrict";
 
 const VerticalBarChart = dynamic(
   () =>
@@ -40,6 +41,8 @@ const VerticalBarChart = dynamic(
 );
 
 export default function Page() {
+  const [logged, setLogged] = useState(false);
+
   const [search, setSearch] = useState(false);
   const [layer, setLayer] = useState(false);
   const [searchDock, setSearchDock] = useState(false);
@@ -53,19 +56,6 @@ export default function Page() {
   const environmentRef = useRef<any>(null);
   const reportsRef = useRef<any>(null);
   const alertsRef = useRef<any>(null);
-
-  // const data = [
-  //   { name: "Jan", uv: 0 },
-  //   { name: "Feb", uv: 50 },
-  //   { name: "Mar", uv: 100 },
-  //   { name: "Apr", uv: 200 },
-  //   { name: "May", uv: 1000 },
-  //   { name: "Jun", uv: 1500 },
-  //   { name: "Jul", uv: 2300 },
-  //   { name: "Ago", uv: 3000 },
-  //   { name: "Set", uv: 3250 },
-  //   { name: "Oct", uv: 3500 },
-  // ];
 
   const data = new Array(30).fill(0).map((_, i) => ({
     name: i,
@@ -110,7 +100,19 @@ export default function Page() {
       )}
 
       <Modal ref={restrictRef}>
-        <Restrict onClose={() => restrictRef.current.close()} />
+        {logged ? (
+          <Restrict
+            onClose={() => {
+              restrictRef.current.close();
+              setLogged(false);
+            }}
+          />
+        ) : (
+          <LoginRestrict
+            onClose={() => restrictRef.current.close()}
+            onChange={() => setLogged(true)}
+          />
+        )}
       </Modal>
 
       <Modal ref={addTerritoryRef}>
@@ -124,7 +126,7 @@ export default function Page() {
       )}
 
       {insights && (
-        <div className="absolute bottom-[5.55rem] inset-x-0 flex justify-center z-10 pointer-events-auto">
+        <div className="absolute bottom-4 inset-x-0 flex justify-center z-10 pointer-events-auto">
           <AreaInsights onClose={() => setInsights(false)} />
         </div>
       )}
@@ -156,7 +158,7 @@ export default function Page() {
             {
               icon: <Square3Stack3DIcon className="w-8 text-zinc-100 p-1" />,
               handleClick: () => setLayer(true),
-              tooltip: "Camdas",
+              tooltip: "Camadas",
             },
           ]}
           style="button"
@@ -198,7 +200,11 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="absolute right-0 mx-auto left-0 bottom-3 flex justify-center ">
+      <div
+        className={`${
+          insights ? "-bottom-16" : "bottom-3"
+        } absolute right-0 mx-auto left-0  flex justify-center transition-all duration-150`}
+      >
         <Dock
           direction="horizontal"
           items={[

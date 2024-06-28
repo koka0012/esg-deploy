@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-import { useLayers } from "../../context/layers";
 import Orbital from "./Orbital";
 import { MapStyles, useMapStyle } from "../../context/mapStyle";
 
 const LayerForm = () => {
   const [orbital, setOrbital] = useState(false);
   const { value, setValue } = useMapStyle();
+  console.log(value);
 
   return (
     <div className="w-[16rem] bg-[#2f3549] text-xs text-white p-2 rounded-md grid grid-cols-3 gap-2 animate-fadeInRight transition-transform duration-300">
@@ -24,7 +24,14 @@ const LayerForm = () => {
           });
         }}
       >
-        <img src="Images/pin_map.png" className="aspect-square rounded-md" />
+        <div
+          className={`${
+            value.id == "Streets" ? "bg-[#4a526b] p-1" : ""
+          } rounded-lg transition-all duration-100`}
+        >
+          <img src="Images/pin_map.png" className="aspect-square rounded-md" />
+        </div>
+
         <div className="flex justify-center">Padrão</div>
       </button>
 
@@ -40,10 +47,17 @@ const LayerForm = () => {
           });
         }}
       >
-        <img
-          src="Images/pin_satelite.png"
-          className="aspect-square rounded-md"
-        />
+        <div
+          className={`${
+            value.id == "Satellite" ? "bg-[#4a526b] p-1" : ""
+          } rounded-lg transition-all duration-100`}
+        >
+          <img
+            src="Images/pin_satelite.png"
+            className="aspect-square rounded-md"
+          />
+        </div>
+
         <div className="flex justify-center">Satélite</div>
       </button>
 
@@ -59,11 +73,21 @@ const LayerForm = () => {
           });
         }}
       >
-        <img src="Images/pin_relevo.png" className="aspect-square rounded-md" />
+        <div
+          className={`${
+            value.id == "Convert" ? "bg-[#4a526b] p-1" : ""
+          } rounded-lg transition-all duration-100`}
+        >
+          <img
+            src="Images/pin_relevo.png"
+            className="aspect-square rounded-md"
+          />
+        </div>
+
         <div className="flex justify-center">Relevo</div>
       </button>
 
-      <div className="col-span-full mx-2 bg-[#2a3042] h-[1px]" />
+      <div className="col-span-full mx-2 bg-[#4a526b] h-[1px]" />
 
       <button
         type="button"
