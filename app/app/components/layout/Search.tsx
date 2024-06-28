@@ -77,7 +77,7 @@ const Search = () => {
           <Form>
             <button
               type="button"
-              className="w-full bg-[#2f3549] text-sm text-white p-2 rounded-md flex justify-between items-center gap-2"
+              className="w-[18rem] bg-[#2f3549] text-sm text-white p-2 rounded-md flex items-center gap-2"
               onClick={toggleDropdown}
             >
               <img
@@ -89,11 +89,13 @@ const Search = () => {
 
               <div>{selectedOption.label}</div>
 
-              <ChevronDownIcon
-                className={`w-4 ${
-                  !isDropdownOpen ? "rotate-0" : "-rotate-180"
-                } transition-all duration-150`}
-              />
+              <div className="flex flex-1 justify-end">
+                <ChevronDownIcon
+                  className={`w-4 ${
+                    !isDropdownOpen ? "rotate-0" : "-rotate-180"
+                  } transition-all duration-150`}
+                />
+              </div>
             </button>
 
             {isDropdownOpen && (
