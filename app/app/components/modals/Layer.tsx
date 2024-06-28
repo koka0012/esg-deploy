@@ -1,18 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
+import { useLayers } from "../../context/layers";
 import Orbital from "./Orbital";
+import { MapStyles, useMapStyle } from "../../context/mapStyle";
 
 const LayerForm = () => {
   const [orbital, setOrbital] = useState(false);
+  const {value, setValue} = useMapStyle();
 
   return (
     <div className="bg-[#2a3042] bg-opacity-50 backdrop-blur-md text-xs text-white p-4 rounded-md grid grid-cols-4 gap-4  animate-fadeInRight transition-transform duration-300">
       <button
         type="button"
         className="flex flex-col items-center gap-2"
-        onClick={() => setOrbital(false)}
+        onClick={() => setValue({ style: "mapbox://styles/mapbox/streets-v12", id: MapStyles.Streets })}
       >
         <img
           src="Images/pin_map.png"
@@ -24,7 +27,7 @@ const LayerForm = () => {
       <button
         type="button"
         className="flex flex-col items-center gap-2"
-        onClick={() => setOrbital(false)}
+        onClick={() => setValue({ style: "mapbox://styles/mapbox/satellite-streets-v12", id: MapStyles.Satellite })}
       >
         <img
           src="Images/pin_satelite.png"
@@ -36,7 +39,7 @@ const LayerForm = () => {
       <button
         type="button"
         className="flex flex-col items-center gap-2"
-        onClick={() => setOrbital(false)}
+        onClick={() => setValue({ style: "mapbox://styles/chmieleski/clxy1xlve003001qo9fd206h9", id: MapStyles.Convert })}
       >
         <img
           src="Images/pin_relevo.png"
