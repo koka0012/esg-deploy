@@ -1,5 +1,4 @@
-import { Button, Input } from "@/app/components";
-import { InputDocs } from "@/app/components/Input/InputDocs";
+"use client"
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Form, Formik, FormikHelpers } from "formik";
 
@@ -65,7 +64,7 @@ const AreaInsights = ({ onClose }: AreaInsightsProps) => {
 
             <div className="flex flex-row bg-[#2f3549] p-2 min-h-[12rem] h-[10rem] gap-2 justify-between">
               <div className="grow bg-[#2a3042] rounded-md p-2 text-white">
-                Grafico Exemplo 1
+              <img src="Charts/co2.svg" alt="co2" width={300} />
               </div>
               <div className="grow bg-[#2a3042] rounded-md p-2 text-white">
                 Grafico Exemplo 2

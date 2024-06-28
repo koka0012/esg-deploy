@@ -14,7 +14,7 @@ import {
   PresentationChartLineIcon,
   Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import { Suspense, useEffect, useRef, useState } from "react";
 import Card from "./components/Card";
 import AddTerritory from "./components/modals/AddTerritory";
@@ -28,16 +28,16 @@ import Search from "./components/modals/Search";
 import SearchDock from "./components/modals/SearchDock";
 import Skeleton from "react-loading-skeleton";
 
-
-const VerticalBarChart = dynamic(() => import('@/app/components/Charts/VerticalBarChart').then(
-  mod => mod.VerticalBarChart),
+const VerticalBarChart = dynamic(
+  () =>
+    import("@/app/components/Charts/VerticalBarChart").then(
+      (mod) => mod.VerticalBarChart
+    ),
   {
     ssr: false,
-    loading: () => (
-      <Skeleton inline className="h-40"/>
-    )
-
-  })
+    loading: () => <Skeleton inline className="h-40" />,
+  }
+);
 
 export default function Page() {
   const [search, setSearch] = useState(false);
@@ -69,8 +69,8 @@ export default function Page() {
 
   const data = new Array(30).fill(0).map((_, i) => ({
     name: i,
-    uv: Math.round(i * 10000 + (Math.random() * (5000 - 2000) + 2000))
-  }))
+    uv: Math.round(i * 10000 + (Math.random() * (5000 - 2000) + 2000)),
+  }));
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -151,10 +151,12 @@ export default function Page() {
             {
               icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
               handleClick: () => setSearch(true),
+              tooltip: "Pesquisar",
             },
             {
               icon: <Square3Stack3DIcon className="w-8 text-zinc-100 p-1" />,
               handleClick: () => setLayer(true),
+              tooltip: "Camdas",
             },
           ]}
           style="button"
@@ -164,9 +166,7 @@ export default function Page() {
       <div className="absolute right-3 top-0 bottom-0 flex flex-row gap-3 py-3">
         <div>
           <div className="flex flex-col gap-4 pointer-events-auto">
-            <Card title="Gráfico" content={
-              <VerticalBarChart data={data} />
-            } />
+            <Card title="Gráfico" content={<VerticalBarChart data={data} />} />
 
             <Card title="Legenda" content={<Label />} />
           </div>
@@ -178,16 +178,19 @@ export default function Page() {
             items={[
               {
                 icon: <ArrowsPointingOutIcon className="w-8 text-white p-1" />,
+                tooltip: "Tela cheia",
               },
               {
                 icon: (
                   <MagnifyingGlassPlusIcon className="w-8 text-white p-1" />
                 ),
+                tooltip: "Aumentar",
               },
               {
                 icon: (
                   <MagnifyingGlassMinusIcon className="w-8 text-white p-1" />
                 ),
+                tooltip: "Diminuir",
               },
             ]}
             style="dock"
@@ -200,42 +203,49 @@ export default function Page() {
           direction="horizontal"
           items={[
             {
-              icon: <PencilIcon className="w-8 text-white p-1" />,
+              icon: (
+                <img src="Icons/add_territory_icon.svg" alt="co2" width={32} />
+              ),
               handleClick: () => addTerritoryRef.current.open(),
+              tooltip: "Cadastrar Território",
             },
             {
-              icon: <LockClosedIcon className="w-8 text-white p-1" />,
+              icon: <img src="Icons/restrict_icon.svg" alt="co2" width={32} />,
               handleClick: () => restrictRef.current.open(),
+              tooltip: "Restrito",
             },
             {
-              icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
+              icon: <img src="Icons/search_icon.svg" alt="co2" width={32} />,
               handleClick: () => {
                 setSearchDock(!searchDock);
                 setInsights(false);
               },
+              tooltip: "Pesquisar",
             },
             {
-              icon: <GlobeAmericasIcon className="w-8 text-white p-1" />,
+              icon: (
+                <img src="Icons/environment_icon.svg" alt="co2" width={32} />
+              ),
               handleClick: () => environmentRef.current.open(),
+              tooltip: "Ambiental",
             },
             {
-              icon: (
-                <ClipboardDocumentListIcon className="w-8 text-white p-1" />
-              ),
+              icon: <img src="Icons/reports_icon.svg" alt="co2" width={32} />,
               handleClick: () => reportsRef.current.open(),
+              tooltip: "Relatórios",
             },
             {
-              icon: (
-                <PresentationChartLineIcon className="w-8 text-white p-1" />
-              ),
+              icon: <img src="Icons/insights_icon.svg" alt="co2" width={32} />,
               handleClick: () => {
                 setInsights(!insights);
                 setSearchDock(false);
               },
+              tooltip: "Insights",
             },
             {
-              icon: <ExclamationCircleIcon className="w-8 text-white p-1" />,
+              icon: <img src="Icons/alerts_icon.svg" alt="co2" width={32} />,
               handleClick: () => alertsRef.current.open(),
+              tooltip: "Alerta",
             },
           ]}
           style="dock"
