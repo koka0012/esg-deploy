@@ -20,8 +20,6 @@ interface FormValues {
 
 export interface AreaInsightsProps {
   onClose: () => void;
-
-  
 }
 
 const AreaInsights = ({ onClose }: AreaInsightsProps) => {
@@ -55,7 +53,10 @@ const AreaInsights = ({ onClose }: AreaInsightsProps) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, handleChange, errors, isSubmitting }) => (
         <Form>
-          <div className="w-[68vw] rounded-md shadow-md overflow-hidden transition-transform duration-300 animate-fadeInUp">
+          <div
+            className="rounded-md shadow-md overflow-hidden transition-transform duration-300 animate-fadeInUp"
+            style={{ width: "calc(100vw - 10rem)" }}
+          >
             <div className="bg-[#2a3042] text-white p-4 flex justify-between items-center">
               <div>Insights de Área</div>
               <button type="button" onClick={onClose}>

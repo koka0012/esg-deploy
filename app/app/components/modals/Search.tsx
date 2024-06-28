@@ -9,11 +9,7 @@ interface FormValues {
   nome_produtor: string;
 }
 
-export interface SearchProps {
-  onClose: () => void;
-}
-
-const Search = ({ onClose }: SearchProps) => {
+const Search = () => {
   const initialValues: FormValues = {
     car: "",
     cpf: "",

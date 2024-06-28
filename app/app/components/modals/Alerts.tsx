@@ -65,7 +65,6 @@ const Alerts = ({ onClose }: AlertsProps) => {
               <p className="text-zinc-300 p-2 rounded-md bg-[#2a3042]  border-2 border-white/60 flex flex-row gap-2 text-sm">
                 <ExclamationTriangleIcon className="w-4" />
                 Alerta de desmatamento em ( 12.15493, 65.5841951 )
-
               </p>
 
               <p className="text-zinc-300 p-2 rounded-md bg-[#2a3042]  border-2 border-white/60 flex flex-row gap-2 text-sm">
@@ -95,7 +94,7 @@ const Alerts = ({ onClose }: AlertsProps) => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#2c3144] hover:bg-[#2e3346] !text-white !font-medium text-xs"
+                className="bg-[#2c3144] hover:bg-[#2e3346] !text-white"
               >
                 Filtrar
               </Button>
@@ -105,7 +104,7 @@ const Alerts = ({ onClose }: AlertsProps) => {
               <Button
                 type="button"
                 onClick={onClose}
-                className="bg-[#2f3549] hover:bg-[#394055] !text-white font-bold text-[16px]"
+                className="bg-[#2f3549] hover:bg-[#394055] !text-white"
               >
                 Fechar
               </Button>

@@ -1,6 +1,6 @@
 import { Button, Input } from "@/app/components";
 import { InputDocs } from "@/app/components/Input/InputDocs";
-import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Form, Formik, FormikHelpers } from "formik";
 
 interface FormValues {
@@ -53,7 +53,7 @@ const Restrict = ({ onClose }: RestrictProps) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, handleChange, errors, isSubmitting }) => (
         <Form>
-          <div className="w-[40vw] max-w-[60rem] max-h-[35vw] rounded-md shadow-md overflow-auto">
+          <div className="w-[40vw] max-w-[60rem] rounded-md shadow-md overflow-hidden">
             <div className="bg-[#2a3042] text-white p-4 flex justify-between items-center">
               <div className="font-bold text-[16px]">Restringir Área</div>
 
@@ -62,7 +62,7 @@ const Restrict = ({ onClose }: RestrictProps) => {
               </button>
             </div>
 
-            <div className="bg-[#2f3549] p-4 grid grid-cols-2 gap-4">
+            <div className="bg-[#2f3549] max-h-[24vw] p-4 grid grid-cols-2 gap-4 overflow-auto">
               <Input
                 name="id"
                 label="ID"
@@ -96,7 +96,7 @@ const Restrict = ({ onClose }: RestrictProps) => {
               />
 
               <div className="col-span-full text-white/80 font-bold text-[16px]">
-                Documentos Confidenciais 
+                Documentos Confidenciais
               </div>
 
               <InputDocs
@@ -160,7 +160,7 @@ const Restrict = ({ onClose }: RestrictProps) => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#2f3549] hover:bg-[#394055] !text-white font-bold text-[16px]"
+                className="bg-[#2f3549] hover:bg-[#394055] !text-white"
               >
                 Pesquisar
               </Button>
