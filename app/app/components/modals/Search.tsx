@@ -1,5 +1,5 @@
-import { Form, Formik, FormikHelpers } from "formik";
 import { Button, Input } from "@/app/components";
+import { Form, Formik, FormikHelpers } from "formik";
 
 interface FormValues {
   car: string;
@@ -9,7 +9,11 @@ interface FormValues {
   nome_produtor: string;
 }
 
-const SearchModal = () => {
+export interface SearchProps {
+  onClose: () => void;
+}
+
+const Search = ({ onClose }: SearchProps) => {
   const initialValues: FormValues = {
     car: "",
     cpf: "",
@@ -30,11 +34,11 @@ const SearchModal = () => {
   };
 
   return (
-    <div className="w-[24rem] bg-[#2a3042] bg-opacity-50 backdrop-blur-md p-4 rounded-md">
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        {({ values, handleChange, errors, isSubmitting }) => (
-          <Form>
-            <div className="grid grid-cols-6 gap-4">
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      {({ values, handleChange, errors, isSubmitting }) => (
+        <Form>
+          <div className="w-[24rem] rounded-md shadow-md overflow-hidden animate-fadeInRight transition-transform duration-300">
+            <div className="bg-[#2f3549] p-4 grid grid-cols-6 gap-4">
               <div className="col-span-2">
                 <Input
                   name="car"
@@ -84,22 +88,22 @@ const SearchModal = () => {
                   error={errors.nome_produtor}
                 />
               </div>
-
-              <div className="col-span-full flex justify-end">
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-[#2a3042] hover:bg-[#2a3042]/80 !text-zinc-100"
-                >
-                  Pesquisar
-                </Button>
-              </div>
             </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
+
+            <div className="bg-[#2a3042] p-4 flex justify-end">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-[#2f3549] hover:bg-[#394055] !text-white"
+              >
+                Pesquisar
+              </Button>
+            </div>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
-export default SearchModal;
+export default Search;

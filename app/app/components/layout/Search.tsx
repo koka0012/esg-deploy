@@ -1,7 +1,12 @@
 "use client";
 
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { Form, Formik, FormikHelpers } from "formik";
 import { useState } from "react";
+
+interface FormValues {
+  map: string;
+}
 
 interface Option {
   label: string;
@@ -9,8 +14,8 @@ interface Option {
   image: string;
 }
 
-export default function Search() {
-  const mapOptions: Option[] = [
+const Search = () => {
+  const options: Option[] = [
     {
       label: "Umidade do Solo",
       value: "umidade_solo",
@@ -38,7 +43,7 @@ export default function Search() {
     },
   ];
 
-  const [selectedOption, setSelectedOption] = useState<Option>(mapOptions[0]);
+  const [selectedOption, setSelectedOption] = useState<Option>(options[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -50,48 +55,74 @@ export default function Search() {
     setIsDropdownOpen(false);
   };
 
+  const initialValues: FormValues = {
+    map: "",
+  };
+
+  const handleSubmit = async (
+    values: FormValues,
+    { setSubmitting }: FormikHelpers<FormValues>
+  ) => {
+    try {
+      console.log(values);
+    } catch (error) {
+      setSubmitting(false);
+    }
+  };
+
   return (
-    <div className="flex items-center gap-4 relative">
-      <div className="h-[3rem] w-[6rem] rounded-md overflow-hidden">
-        <img src={selectedOption.image} alt={selectedOption.label} />
-      </div>
-
-      <button
-        type="button"
-        className="h-[3rem] w-[18rem] bg-white/5 text-sm text-zinc-200 p-2 rounded-md flex justify-between items-center"
-        onClick={toggleDropdown}
-      >
-        <div>{selectedOption.label}</div>
-
-        <div
-          className={`${
-            isDropdownOpen ? "rotate-180" : "rotate-0"
-          } transition-all duration-150`}
-        >
-          <ChevronDownIcon className="w-5" />
-        </div>
-      </button>
-
-      {isDropdownOpen && (
-        <ul className="w-[18rem] bg-[#2a3042] p-2 rounded-md flex flex-col gap-2 absolute top-[4rem] right-0 transition-all duration-150 z-10">
-          {mapOptions.map((option, index) => (
-            <li
-              key={index}
-              className="hover:bg-white/5 p-2 rounded-md cursor-pointer flex justify-between items-center transition-all duration-150"
-              onClick={() => handleOptionClick(option)}
+    <div className="relative">
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        {({ values, handleChange, errors }) => (
+          <Form>
+            <button
+              type="button"
+              className="w-[18rem] bg-[#2f3549] text-sm text-white p-2 rounded-md flex items-center gap-2"
+              onClick={toggleDropdown}
             >
-              <div className="truncate">{option.label}</div>
-
               <img
-                src={option.image}
-                alt={option.label}
+                src={selectedOption.image}
+                alt={selectedOption.label}
                 width={75}
                 className="rounded-md"
               />
-            </li>
-          ))}
-        </ul>
-      )}
+
+              <div>{selectedOption.label}</div>
+
+              <div className="flex flex-1 justify-end">
+                <ChevronDownIcon
+                  className={`w-4 ${
+                    !isDropdownOpen ? "rotate-0" : "-rotate-180"
+                  } transition-all duration-150`}
+                />
+              </div>
+            </button>
+
+            {isDropdownOpen && (
+              <ul className="w-full bg-[#2f3549] text-sm p-2 rounded-md flex flex-col gap-2 absolute top-[4rem] right-0 transition-all duration-150 z-10">
+                {options.map((option, index) => (
+                  <li
+                    key={index}
+                    className="hover:bg-[#3c435a] rounded-md cursor-pointer flex items-center gap-2 transition-all duration-150"
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    <img
+                      src={option.image}
+                      alt={option.label}
+                      width={75}
+                      className="rounded-md"
+                    />
+
+                    <div className="truncate">{option.label}</div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Form>
+        )}
+      </Formik>
     </div>
   );
-}
+};
+
+export default Search;

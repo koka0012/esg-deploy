@@ -19,7 +19,7 @@ export default function AuthLayout({
 
       <div className="h-screen flex justify-end items-center">{children}</div>
 
-      <div className="text-xs text-zinc-100 flex flex-col">
+      <div className="text-xs text-white flex flex-col">
         <div className="drop-shadow-md">Desenvolvido por </div>
 
         <img src="/Images/logoH.svg" width={150} alt="logo" />

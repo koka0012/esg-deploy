@@ -1,61 +1,76 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { Dock, Label, Modal } from "@/app/components";
 import {
-  PencilIcon,
-  MagnifyingGlassIcon,
-  Square3Stack3DIcon,
-  GlobeAmericasIcon,
-  ClipboardDocumentListIcon,
-  PresentationChartLineIcon,
   ArrowsPointingOutIcon,
-  MagnifyingGlassPlusIcon,
-  MagnifyingGlassMinusIcon,
+  ClipboardDocumentListIcon,
   ExclamationCircleIcon,
+  GlobeAmericasIcon,
   LockClosedIcon,
+  MagnifyingGlassIcon,
+  MagnifyingGlassMinusIcon,
+  MagnifyingGlassPlusIcon,
+  PencilIcon,
+  PresentationChartLineIcon,
+  Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
-import { Dock, VerticalBarChart, Label, Modal } from "@/app/components";
-
+import dynamic from 'next/dynamic';
+import { Suspense, useEffect, useRef, useState } from "react";
 import Card from "./components/Card";
-import Search from "./components/modals/Search";
+import AddTerritory from "./components/modals/AddTerritory";
+import Alerts from "./components/modals/Alerts";
+import AreaInsights from "./components/modals/AreaInsights";
+import Environment from "./components/modals/Environment";
 import Layer from "./components/modals/Layer";
+import Reports from "./components/modals/Reports";
 import Restrict from "./components/modals/Restrict";
+import Search from "./components/modals/Search";
+import SearchDock from "./components/modals/SearchDock";
+import Skeleton from "react-loading-skeleton";
 
-import AddTerritoryModal from "./components/modals/AddTerritoryModal";
-import SearchDockModal from "./components/modals/SearchDockModal";
-import EnvironmentalModal from "./components/modals/EnvironmentalModal";
-import ReportsModal from "./components/modals/ReportsModal";
-import AreaInsightsModal from "./components/modals/AreaInsightsModal";
-import AlertsModal from "./components/modals/AlertsModal";
+
+const VerticalBarChart = dynamic(() => import('@/app/components/Charts/VerticalBarChart').then(
+  mod => mod.VerticalBarChart),
+  {
+    ssr: false,
+    loading: () => (
+      <Skeleton inline className="h-40"/>
+    )
+
+  })
 
 export default function Page() {
   const [search, setSearch] = useState(false);
   const [layer, setLayer] = useState(false);
-
-  const [addTerritory, setAddTerritory] = useState(false);
   const [searchDock, setSearchDock] = useState(false);
-  const [environmental, setEnvironmental] = useState(false);
-  const [reports, setReports] = useState(false);
-  const [areaInsights, setAreaInsights] = useState(false);
-  const [alerts, setAlerts] = useState(false);
+  const [insights, setInsights] = useState(false);
 
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
 
+  const addTerritoryRef = useRef<any>(null);
   const restrictRef = useRef<any>(null);
+  const environmentRef = useRef<any>(null);
+  const reportsRef = useRef<any>(null);
+  const alertsRef = useRef<any>(null);
 
-  const data = [
-    { name: "Jan", uv: 200 },
-    { name: "Feb", uv: 400 },
-    { name: "Mar", uv: 800 },
-    { name: "Apr", uv: 1000 },
-    { name: "May", uv: 1200 },
-    { name: "Jun", uv: 1600 },
-    { name: "Jul", uv: 1800 },
-    { name: "Ago", uv: 2000 },
-    { name: "Set", uv: 2400 },
-    { name: "Oct", uv: 2800 },
-  ];
+  // const data = [
+  //   { name: "Jan", uv: 0 },
+  //   { name: "Feb", uv: 50 },
+  //   { name: "Mar", uv: 100 },
+  //   { name: "Apr", uv: 200 },
+  //   { name: "May", uv: 1000 },
+  //   { name: "Jun", uv: 1500 },
+  //   { name: "Jul", uv: 2300 },
+  //   { name: "Ago", uv: 3000 },
+  //   { name: "Set", uv: 3250 },
+  //   { name: "Oct", uv: 3500 },
+  // ];
+
+  const data = new Array(30).fill(0).map((_, i) => ({
+    name: i,
+    uv: Math.round(i * 10000 + (Math.random() * (5000 - 2000) + 2000))
+  }))
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -75,88 +90,103 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="h-full  p-4 flex flex-1 flex-col gap-4 relative">
+    <div className=" w-full h-full pointer-events-none relative">
       {search && (
-        <div ref={searchRef} className="absolute top-4 left-[6rem] z-10">
+        <div
+          ref={searchRef}
+          className="absolute top-3 left-[4.6rem] z-10 pointer-events-auto"
+        >
           <Search />
         </div>
       )}
 
       {layer && (
-        <div ref={layerRef} className="absolute top-[8.5rem] z-10">
+        <div
+          ref={layerRef}
+          className="absolute top-[4.5rem] left-[4.6rem] z-10 pointer-events-auto"
+        >
           <Layer />
         </div>
       )}
 
       <Modal ref={restrictRef}>
-        <Restrict />
+        <Restrict onClose={() => restrictRef.current.close()} />
       </Modal>
 
-      {addTerritory && (
-        <AddTerritoryModal handleClose={() => setAddTerritory(false)} />
-      )}
+      <Modal ref={addTerritoryRef}>
+        <AddTerritory onClose={() => addTerritoryRef.current.close()} />
+      </Modal>
 
       {searchDock && (
-        <SearchDockModal handleClose={() => setSearchDock(false)} />
-      )}
-
-      {environmental && (
-        <EnvironmentalModal handleClose={() => setEnvironmental(false)} />
-      )}
-
-      {reports && <ReportsModal handleClose={() => setReports(false)} />}
-
-      {areaInsights && (
-        <AreaInsightsModal handleClose={() => setAreaInsights(false)} />
-      )}
-
-      {alerts && <AlertsModal handleClose={() => setAlerts(false)} />}
-
-      <div className="flex flex-1 gap-4">
-        <div className="w-[4rem]">
-          <Dock
-            direction="vertical"
-            items={[
-              {
-                icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
-                handleClick: () => setSearch(true),
-              },
-              {
-                icon: <Square3Stack3DIcon className="w-8 text-zinc-100 p-1" />,
-                handleClick: () => setLayer(true),
-              },
-            ]}
-            style="button"
-          />
+        <div className="absolute bottom-[5.55rem] inset-x-0 flex justify-center z-10 pointer-events-auto">
+          <SearchDock onClose={() => setSearchDock(false)} />
         </div>
+      )}
 
-        <div
-          className="flex flex-1 justify-end"
-          style={{ height: "calc(90vh - 112px)" }}
-        >
-          <div className="w-1/5 md:w-1/5 flex flex-col gap-4">
-            <Card title="Grafico" content={<VerticalBarChart data={data} />} />
+      {insights && (
+        <div className="absolute bottom-[5.55rem] inset-x-0 flex justify-center z-10 pointer-events-auto">
+          <AreaInsights onClose={() => setInsights(false)} />
+        </div>
+      )}
+
+      <Modal ref={environmentRef}>
+        <Environment onClose={() => environmentRef.current.close()} />
+      </Modal>
+
+      <Modal ref={reportsRef}>
+        <Reports
+          onClose={() => reportsRef.current.close()}
+          onSearch={() => reportsRef.current.close()}
+        />
+      </Modal>
+
+      <Modal ref={alertsRef}>
+        <Alerts onClose={() => alertsRef.current.close()} />
+      </Modal>
+
+      <div className="absolute top-3 left-3">
+        <Dock
+          direction="vertical"
+          items={[
+            {
+              icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setSearch(true),
+            },
+            {
+              icon: <Square3Stack3DIcon className="w-8 text-zinc-100 p-1" />,
+              handleClick: () => setLayer(true),
+            },
+          ]}
+          style="button"
+        />
+      </div>
+
+      <div className="absolute right-3 top-0 bottom-0 flex flex-row gap-3 py-3">
+        <div>
+          <div className="flex flex-col gap-4 pointer-events-auto">
+            <Card title="Gráfico" content={
+              <VerticalBarChart data={data} />
+            } />
+
             <Card title="Legenda" content={<Label />} />
           </div>
         </div>
 
-        <div className="w-[4rem] flex items-center">
+        <div className="self-center">
           <Dock
             direction="vertical"
             items={[
               {
+                icon: <ArrowsPointingOutIcon className="w-8 text-white p-1" />,
+              },
+              {
                 icon: (
-                  <ArrowsPointingOutIcon className="w-8 text-zinc-100 p-1" />
+                  <MagnifyingGlassPlusIcon className="w-8 text-white p-1" />
                 ),
               },
               {
                 icon: (
-                  <MagnifyingGlassPlusIcon className="w-8 text-zinc-100 p-1" />
-                ),
-              },
-              {
-                icon: (
-                  <MagnifyingGlassMinusIcon className="w-8 text-zinc-100 p-1" />
+                  <MagnifyingGlassMinusIcon className="w-8 text-white p-1" />
                 ),
               },
             ]}
@@ -165,41 +195,47 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="h-[4rem] flex justify-center">
+      <div className="absolute right-0 mx-auto left-0 bottom-3 flex justify-center ">
         <Dock
           direction="horizontal"
           items={[
             {
-              icon: <PencilIcon className="w-8 text-zinc-100 p-1" />,
-              handleClick: () => setAddTerritory(true),
+              icon: <PencilIcon className="w-8 text-white p-1" />,
+              handleClick: () => addTerritoryRef.current.open(),
             },
             {
-              icon: <LockClosedIcon className="w-8 text-zinc-100 p-1" />,
+              icon: <LockClosedIcon className="w-8 text-white p-1" />,
               handleClick: () => restrictRef.current.open(),
             },
             {
-              icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
-              handleClick: () => setSearchDock(true),
+              icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
+              handleClick: () => {
+                setSearchDock(!searchDock);
+                setInsights(false);
+              },
             },
             {
-              icon: <GlobeAmericasIcon className="w-8 text-zinc-100 p-1" />,
-              handleClick: () => setEnvironmental(true),
-            },
-            {
-              icon: (
-                <ClipboardDocumentListIcon className="w-8 text-zinc-100 p-1" />
-              ),
-              handleClick: () => setReports(true),
+              icon: <GlobeAmericasIcon className="w-8 text-white p-1" />,
+              handleClick: () => environmentRef.current.open(),
             },
             {
               icon: (
-                <PresentationChartLineIcon className="w-8 text-zinc-100 p-1" />
+                <ClipboardDocumentListIcon className="w-8 text-white p-1" />
               ),
-              handleClick: () => setAreaInsights(true),
+              handleClick: () => reportsRef.current.open(),
             },
             {
-              icon: <ExclamationCircleIcon className="w-8 text-zinc-100 p-1" />,
-              handleClick: () => setAlerts(true),
+              icon: (
+                <PresentationChartLineIcon className="w-8 text-white p-1" />
+              ),
+              handleClick: () => {
+                setInsights(!insights);
+                setSearchDock(false);
+              },
+            },
+            {
+              icon: <ExclamationCircleIcon className="w-8 text-white p-1" />,
+              handleClick: () => alertsRef.current.open(),
             },
           ]}
           style="dock"

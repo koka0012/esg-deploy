@@ -1,52 +1,69 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-import OrbitalModal from "./OrbitalModal";
+import { useLayers } from "../../context/layers";
+import Orbital from "./Orbital";
+import { MapStyles, useMapStyle } from "../../context/mapStyle";
 
 const LayerForm = () => {
   const [orbital, setOrbital] = useState(false);
-  const orbitalRef = useRef<any>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (orbitalRef.current && !orbitalRef.current.contains(event.target)) {
-        setOrbital(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const { value, setValue } = useMapStyle();
 
   return (
-    <div className="bg-[#2a3042] bg-opacity-50 backdrop-blur-md text-xs text-white p-3 rounded-md flex flex-col gap-2 relative">
-      <button type="button" className="flex flex-col items-center gap-2">
-        <img
-          src="Images/pin_map.png"
-          className="w-[2.5rem] aspect-square rounded-md"
-        />
-        <div className="w-[2.5rem] flex justify-center">Mapa</div>
+    <div className="w-[16rem] bg-[#2f3549] text-xs text-white p-2 rounded-md grid grid-cols-3 gap-2 animate-fadeInRight transition-transform duration-300">
+      <button
+        type="button"
+        className="flex flex-col items-center gap-2"
+        onClick={() => {
+          setOrbital(false);
+
+          setValue({
+            style: "mapbox://styles/mapbox/streets-v12",
+            id: MapStyles.Streets,
+          });
+        }}
+      >
+        <img src="Images/pin_map.png" className="aspect-square rounded-md" />
+        <div className="flex justify-center">Padrão</div>
       </button>
 
-      <button type="button" className="flex flex-col items-center gap-2">
+      <button
+        type="button"
+        className="flex flex-col items-center gap-2"
+        onClick={() => {
+          setOrbital(false);
+
+          setValue({
+            style: "mapbox://styles/mapbox/satellite-streets-v12",
+            id: MapStyles.Satellite,
+          });
+        }}
+      >
         <img
           src="Images/pin_satelite.png"
-          className="w-[2.5rem] aspect-square rounded-md"
+          className="aspect-square rounded-md"
         />
-        <div className="w-[2.5rem] flex justify-center">Satélite</div>
+        <div className="flex justify-center">Satélite</div>
       </button>
 
-      <button type="button" className="flex flex-col items-center gap-2">
-        <img
-          src="Images/pin_relevo.png"
-          className="w-[2.5rem] aspect-square rounded-md"
-        />
-        <div className="w-[2.5rem] flex justify-center">Relevo</div>
+      <button
+        type="button"
+        className="flex flex-col items-center gap-2"
+        onClick={() => {
+          setOrbital(false);
+
+          setValue({
+            style: "mapbox://styles/chmieleski/clxy1xlve003001qo9fd206h9",
+            id: MapStyles.Convert,
+          });
+        }}
+      >
+        <img src="Images/pin_relevo.png" className="aspect-square rounded-md" />
+        <div className="flex justify-center">Relevo</div>
       </button>
+
+      <div className="col-span-full mx-2 bg-[#2a3042] h-[1px]" />
 
       <button
         type="button"
@@ -55,14 +72,14 @@ const LayerForm = () => {
       >
         <img
           src="Images/pin_orbital.png"
-          className="w-[2.5rem] aspect-square rounded-md"
+          className="aspect-square rounded-md"
         />
-        <div className="w-[2.5rem] flex justify-center">Mapa Orbital</div>
+        <div className="flex justify-center">Sentinel-2</div>
       </button>
 
       {orbital && (
-        <div ref={orbitalRef} className="absolute bottom-4 left-[5rem] z-10">
-          <OrbitalModal />
+        <div className="col-span-full">
+          <Orbital />
         </div>
       )}
     </div>

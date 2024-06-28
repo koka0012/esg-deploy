@@ -12,6 +12,7 @@ export interface InputProps {
   className?: string;
   handleChange: (data: any) => void;
   error?: string;
+  disabled?: boolean;
 }
 
 export const Input = ({
@@ -23,6 +24,7 @@ export const Input = ({
   className,
   handleChange,
   error,
+  disabled,
 }: InputProps) => {
   const [password, setPassword] = useState("password");
 
@@ -33,7 +35,7 @@ export const Input = ({
   return (
     <div className="flex flex-1 flex-col gap-1 relative">
       {label && (
-        <label htmlFor={name} className="text-sm font-medium text-zinc-100">
+        <label htmlFor={name} className="text-xs font-medium text-white/80">
           {label}
         </label>
       )}
@@ -44,9 +46,10 @@ export const Input = ({
         value={value}
         placeholder={placeholder}
         onChange={handleChange}
-        className={`${className} text-sm text-zinc-100 placeholder-zinc-100/80 bg-transparent ${
-          error ? "border-red-400" : ""
-        } p-2 border rounded-md`}
+        className={`${className} text-xs font-medium text-white placeholder:text-[#6a738b] border border-[#2a3042] ${
+          error ? "bg-red-300/50 !placeholder-white/50" : "bg-[#3c435a]/50"
+        } p-2 rounded-md`}
+        disabled={disabled}
       />
 
       {type === "password" && (
@@ -56,9 +59,9 @@ export const Input = ({
           className="absolute top-[37px] right-[11px]"
         >
           {password === "password" ? (
-            <EyeSlashIcon className="w-5 text-zinc-100" />
+            <EyeSlashIcon className="w-5 text-white" />
           ) : (
-            <EyeIcon className="w-5 text-zinc-100" />
+            <EyeIcon className="w-5 text-white" />
           )}
         </button>
       )}
