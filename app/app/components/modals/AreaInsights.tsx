@@ -1,6 +1,9 @@
-import { Button, Input } from "@/app/components";
-import { InputDocs } from "@/app/components/Input/InputDocs";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+"use client";
+import {
+  CheckCircleIcon,
+  XCircleIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/solid";
 import { Form, Formik, FormikHelpers } from "formik";
 
 interface FormValues {
@@ -23,6 +26,59 @@ export interface AreaInsightsProps {
 }
 
 const AreaInsights = ({ onClose }: AreaInsightsProps) => {
+  const datas = [
+    {
+      ano: "2020",
+      biomassa: "521 566",
+      biomassa_w: "w-[25%]",
+      chuva: "1444",
+      chuva_w: "w-[35%]",
+      clima: "12",
+      clima_w: "w-[10%]",
+      compilance: true,
+    },
+    {
+      ano: "2021",
+      biomassa: "485 421",
+      biomassa_w: "w-[22%]",
+      chuva: "1232",
+      chuva_w: "w-[30%]",
+      clima: "15",
+      clima_w: "w-[12%]",
+      compilance: true,
+    },
+    {
+      ano: "2022",
+      biomassa: "399 874",
+      biomassa_w: "w-[20%]",
+      chuva: "1276",
+      chuva_w: "w-[32%]",
+      clima: "22",
+      clima_w: "w-[15%]",
+      compilance: true,
+    },
+    {
+      ano: "2023",
+      biomassa: "212 589",
+      biomassa_w: "w-[18%]",
+      chuva: "1493",
+      chuva_w: "w-[33%]",
+      clima: "38",
+      clima_w: "w-[18%]",
+      compilance: false,
+    },
+    {
+      ano: "2024",
+      biomassa: "128 701",
+      biomassa_w: "w-[16%]",
+      chuva: "1557",
+      chuva_w: "w-[36%]",
+      clima: "41",
+      clima_w: "w-[20%]",
+      compilance: true,
+    },
+  ];
+
   const initialValues: FormValues = {
     id: "",
     matricula: "",
@@ -64,15 +120,68 @@ const AreaInsights = ({ onClose }: AreaInsightsProps) => {
               </button>
             </div>
 
-            <div className="flex flex-row bg-[#2f3549] p-2 min-h-[12rem] h-[10rem] gap-2 justify-between">
-              <div className="grow bg-[#2a3042] rounded-md p-2 text-white">
-                Grafico Exemplo 1
+            <div className="grid grid-cols-4 bg-[#2f3549] p-2 min-h-[12rem] h-[10rem] gap-2 justify-between">
+              <div className="bg-[#2a3042] rounded-md p-2 text-white flex justify-center items-center">
+                <img src="Charts/co2.svg" alt="co2" width={300} />
               </div>
-              <div className="grow bg-[#2a3042] rounded-md p-2 text-white">
-                Grafico Exemplo 2
+
+              <div className="bg-[#2a3042] rounded-md p-2 text-white flex justify-center items-center">
+                <img src="Charts/sankey.svg" alt="co2" width={350} />
               </div>
-              <div className="grow bg-[#2a3042] rounded-md p-2 text-white">
-                Grafico Exemplo 3
+
+              <div className="col-span-2 bg-[#2a3042] rounded-md p-2 text-white">
+                <table className="w-full">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Biomassa (kg/ha)</th>
+                      <th>Chuva (mm)</th>
+                      <th>Clima (SPI)</th>
+                      <th>Compilance</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {datas.map((item: any, key: number) => (
+                      <tr key={key} className="text-sm">
+                        <td>
+                          <div className="flex justify-center">{item.ano}</div>
+                        </td>
+                        <td>
+                          <div className="flex items-center gap-2">
+                            <div>{item.biomassa}</div>
+                            <div
+                              className={`bg-gradient-to-r from-green-500 p-2.5 ${item.biomassa_w}`}
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <div className="flex items-center gap-2">
+                            <div>{item.chuva}</div>
+                            <div
+                              className={`bg-gradient-to-r from-orange-500 p-2.5 ${item.chuva_w}`}
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <div className="flex items-center gap-2">
+                            <div>{item.clima}</div>
+                            <div
+                              className={`bg-gradient-to-r from-sky-500 p-2.5 ${item.clima_w}`}
+                            />
+                          </div>
+                        </td>
+                        <td className="flex justify-center">
+                          {item.compilance ? (
+                            <CheckCircleIcon className="w-6 text-green-500" />
+                          ) : (
+                            <XCircleIcon className="w-6 text-red-500" />
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

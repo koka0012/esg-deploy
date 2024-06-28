@@ -153,10 +153,12 @@ export default function Page() {
             {
               icon: <MagnifyingGlassIcon className="w-8 text-zinc-100 p-1" />,
               handleClick: () => setSearch(true),
+              tooltip: "Pesquisar",
             },
             {
               icon: <Square3Stack3DIcon className="w-8 text-zinc-100 p-1" />,
               handleClick: () => setLayer(true),
+              tooltip: "Camdas",
             },
           ]}
           style="button"
@@ -178,16 +180,19 @@ export default function Page() {
             items={[
               {
                 icon: <ArrowsPointingOutIcon className="w-8 text-white p-1" />,
+                tooltip: "Tela cheia",
               },
               {
                 icon: (
                   <MagnifyingGlassPlusIcon className="w-8 text-white p-1" />
                 ),
+                tooltip: "Aumentar",
               },
               {
                 icon: (
                   <MagnifyingGlassMinusIcon className="w-8 text-white p-1" />
                 ),
+                tooltip: "Diminuir",
               },
             ]}
             style="dock"
@@ -204,42 +209,49 @@ export default function Page() {
           direction="horizontal"
           items={[
             {
-              icon: <PencilIcon className="w-8 text-white p-1" />,
+              icon: (
+                <img src="Icons/add_territory_icon.svg" alt="co2" width={32} />
+              ),
               handleClick: () => addTerritoryRef.current.open(),
+              tooltip: "Cadastrar Território",
             },
             {
-              icon: <LockClosedIcon className="w-8 text-white p-1" />,
+              icon: <img src="Icons/restrict_icon.svg" alt="co2" width={32} />,
               handleClick: () => restrictRef.current.open(),
+              tooltip: "Restrito",
             },
             {
-              icon: <MagnifyingGlassIcon className="w-8 text-white p-1" />,
+              icon: <img src="Icons/search_icon.svg" alt="co2" width={32} />,
               handleClick: () => {
                 setSearchDock(!searchDock);
                 setInsights(false);
               },
+              tooltip: "Pesquisar",
             },
             {
-              icon: <GlobeAmericasIcon className="w-8 text-white p-1" />,
+              icon: (
+                <img src="Icons/environment_icon.svg" alt="co2" width={32} />
+              ),
               handleClick: () => environmentRef.current.open(),
+              tooltip: "Ambiental",
             },
             {
-              icon: (
-                <ClipboardDocumentListIcon className="w-8 text-white p-1" />
-              ),
+              icon: <img src="Icons/reports_icon.svg" alt="co2" width={32} />,
               handleClick: () => reportsRef.current.open(),
+              tooltip: "Relatórios",
             },
             {
-              icon: (
-                <PresentationChartLineIcon className="w-8 text-white p-1" />
-              ),
+              icon: <img src="Icons/insights_icon.svg" alt="co2" width={32} />,
               handleClick: () => {
                 setInsights(!insights);
                 setSearchDock(false);
               },
+              tooltip: "Insights",
             },
             {
-              icon: <ExclamationCircleIcon className="w-8 text-white p-1" />,
+              icon: <img src="Icons/alerts_icon.svg" alt="co2" width={32} />,
               handleClick: () => alertsRef.current.open(),
+              tooltip: "Alerta",
             },
           ]}
           style="dock"
