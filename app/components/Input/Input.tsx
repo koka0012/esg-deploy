@@ -35,7 +35,7 @@ export const Input = ({
   return (
     <div className="flex flex-1 flex-col gap-1 relative">
       {label && (
-        <label htmlFor={name} className="text-sm font-medium text-white">
+        <label htmlFor={name} className="text-xs font-medium text-white/80">
           {label}
         </label>
       )}
@@ -46,7 +46,7 @@ export const Input = ({
         value={value}
         placeholder={placeholder}
         onChange={handleChange}
-        className={`${className} text-sm text-white placeholder:text-[#6a738b] ${
+        className={`${className} text-xs font-medium text-white placeholder:text-[#6a738b] border border-[#2a3042] ${
           error ? "bg-red-300/50 !placeholder-white/50" : "bg-[#3c435a]/50"
         } p-2 rounded-md`}
         disabled={disabled}

@@ -32,9 +32,9 @@ const Reports = ({ onClose, onSearch }: ReportsProps) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, handleChange, errors, isSubmitting }) => (
         <Form>
-          <div className="w-[80vw] max-w-[60rem] rounded-md shadow-md overflow-hidden">
+          <div className="w-[40vw] max-w-[60rem] rounded-md shadow-md overflow-hidden">
             <div className="bg-[#2a3042] text-white p-4 flex justify-between items-center">
-              <div>Relatoriós</div>
+              <div  className="font-bold text-[16px]">Relatoriós</div>
               <button type="button" onClick={onClose}>
                 <XMarkIcon className="w-5" />
               </button>
@@ -50,11 +50,11 @@ const Reports = ({ onClose, onSearch }: ReportsProps) => {
               />
             </div>
 
-            <div className="bg-[#2a3042] p-4 flex justify-end">
+            <div className="bg-[#2a3042] px-4 py-2 flex justify-end">
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#2f3549] hover:bg-[#394055] !text-white"
+                className="bg-[#2f3549] hover:bg-[#394055] !text-white font-bold text-[16px]"
               >
                 Pesquisar
               </Button>

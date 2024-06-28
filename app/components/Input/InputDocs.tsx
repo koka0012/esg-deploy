@@ -20,7 +20,7 @@ export const InputDocs = ({
   return (
     <div className="flex flex-1 flex-col gap-1 relative">
       {label && (
-        <label htmlFor={name} className="text-sm font-medium text-white">
+        <label htmlFor={name} className="text-xs font-medium text-white/80">
           {label}
         </label>
       )}

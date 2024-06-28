@@ -66,9 +66,9 @@ const AddTerritory = ({ onClose }: AddTerritoryProps) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, setValues, handleChange, errors, isSubmitting }) => (
         <Form>
-          <div className="w-[80vw] max-w-[60rem] rounded-md shadow-md overflow-hidden">
+          <div className="w-[40vw] max-w-[60rem] rounded-md shadow-md overflow-hidden">
             <div className="bg-[#2a3042] text-white p-4 flex justify-between items-center">
-              <div>Adicionar Território</div>
+              <div className="font-bold text-[16px]">Adicionar Território</div>
 
               <button type="button" onClick={onClose}>
                 <XMarkIcon className="w-5" />
@@ -189,11 +189,11 @@ const AddTerritory = ({ onClose }: AddTerritoryProps) => {
               </div>
             </div>
 
-            <div className="bg-[#2a3042] p-4 flex justify-end">
+            <div className="bg-[#2a3042] px-4 py-2 flex justify-end">
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#2f3549] hover:bg-[#394055] !text-white"
+                className="bg-[#2f3549] hover:bg-[#394055] !text-white font-bold text-[16px]"
               >
                 Salvar
               </Button>

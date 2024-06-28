@@ -1,6 +1,6 @@
 import { Button, Input } from "@/app/components";
 import { InputDocs } from "@/app/components/Input/InputDocs";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Form, Formik, FormikHelpers } from "formik";
 
 interface FormValues {
@@ -53,9 +53,9 @@ const Restrict = ({ onClose }: RestrictProps) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, handleChange, errors, isSubmitting }) => (
         <Form>
-          <div className="w-[80vw] max-w-[60rem] rounded-md shadow-md overflow-hidden">
+          <div className="w-[40vw] max-w-[60rem] max-h-[35vw] rounded-md shadow-md overflow-auto">
             <div className="bg-[#2a3042] text-white p-4 flex justify-between items-center">
-              <div>Restringir Área</div>
+              <div className="font-bold text-[16px]">Restringir Área</div>
 
               <button type="button" onClick={onClose}>
                 <XMarkIcon className="w-5" />
@@ -95,8 +95,8 @@ const Restrict = ({ onClose }: RestrictProps) => {
                 error={errors.numero_car}
               />
 
-              <div className="col-span-full text-white">
-                Documentos Confidenciais
+              <div className="col-span-full text-white/80 font-bold text-[16px]">
+                Documentos Confidenciais 
               </div>
 
               <InputDocs
@@ -156,11 +156,11 @@ const Restrict = ({ onClose }: RestrictProps) => {
               />
             </div>
 
-            <div className="bg-[#2a3042] p-4 flex justify-end">
+            <div className="bg-[#2a3042] px-4 py-2 flex justify-end">
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#2f3549] hover:bg-[#394055] !text-white"
+                className="bg-[#2f3549] hover:bg-[#394055] !text-white font-bold text-[16px]"
               >
                 Pesquisar
               </Button>

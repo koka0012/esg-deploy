@@ -1,5 +1,5 @@
 import { Button, Input } from "@/app/components";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useState } from "react";
 
@@ -69,16 +69,16 @@ const SearchDock = ({ onClose }: SearchDockProps) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, handleChange, errors, isSubmitting }) => (
         <Form>
-          <div className="w-[80vw] max-w-[60rem] rounded-md shadow-md overflow-hidden animate-fadeInUp transition-transform duration-300">
+          <div className="w-[27vw] max-w-[60rem] rounded-md shadow-md overflow-hidden animate-fadeInUp transition-transform duration-300">
             <div className="bg-[#2a3042] text-white p-4 flex justify-between items-center">
-              <div>Pesquisar</div>
+              <div className="font-bold text-[16px]">Pesquisar</div>
 
               <button type="button" onClick={onClose}>
                 <XMarkIcon className="w-5" />
               </button>
             </div>
 
-            <div className="bg-[#2f3549] p-4 grid grid-cols-2 gap-4">
+            <div className="bg-[#2f3549] px-4 py-2 grid grid-cols-2 gap-4">
               <div className="col-span-full">
                 <Input
                   name="searchQuery"
@@ -92,24 +92,24 @@ const SearchDock = ({ onClose }: SearchDockProps) => {
                 onClick={() => {
                   setShowCriteria(true);
                 }}
-                className="bg-[#394055] hover:bg-[#454c63] !text-white"
+                className="bg-[#394055] hover:bg-[#454c63] !text-white !font-medium text-xs"
               >
-                Relatório PDF de Compliance
+                Relatório de Compliance
               </Button>
 
               {showCriteria && (
                 <>
                   <Button
                     onClick={() => setShowCriteria(!showCriteria)}
-                    className="bg-[#394055] hover:bg-[#454c63] !text-white"
+                    className="bg-[#394055] hover:bg-[#454c63] !text-white !font-medium text-xs"
                   >
                     Salvar Critérios
                   </Button>
 
-                  <div className="max-h-40 col-span-full bg-[#2a3042] rounded-md p-2 grid grid-cols-3 gap-2 overflow-auto">
+                  <div className="max-h-40 col-span-full bg-[#2a3042] rounded-sm p-2 grid grid-cols-3 gap-2 overflow-auto">
                     {criteriaItems.map((item) => (
                       <div key={item} className="flex items-center gap-2">
-                        <div className="border-2 rounded-full flex">
+                        <div className="border-2 border-white/80 rounded-sm flex">
                           <input
                             type="checkbox"
                             id={item}
@@ -126,11 +126,11 @@ const SearchDock = ({ onClose }: SearchDockProps) => {
                                 );
                               }
                             }}
-                            className="checked:bg-white bg-[#2f3549] h-3 w-3 rounded-full border-2 border-[#2f3549] appearance-none transition-all duration-150"
+                            className="checked:bg-white/80 bg-[#2f3549] h-3 w-3  border-2 border-[#2f3549] appearance-none transition-all duration-150"
                           />
                         </div>
 
-                        <label htmlFor={item} className="text-white text-xs">
+                        <label htmlFor={item} className="text-white/80 text-xs">
                           {item}
                         </label>
                       </div>
@@ -140,11 +140,11 @@ const SearchDock = ({ onClose }: SearchDockProps) => {
               )}
             </div>
 
-            <div className="bg-[#2a3042] p-4 flex justify-end">
+            <div className="bg-[#2a3042] px-4 py-2 flex justify-end">
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#2f3549] hover:bg-[#394055] !text-white"
+                className="bg-[#2f3549] hover:bg-[#394055] !text-white font-bold text-[16px]"
               >
                 Pesquisar
               </Button>

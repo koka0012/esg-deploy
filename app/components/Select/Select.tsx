@@ -29,7 +29,7 @@ export const Select = ({
   return (
     <div className="flex flex-1 flex-col gap-1">
       {label && (
-        <label htmlFor={name} className="font-medium text-white">
+        <label htmlFor={name} className="text-xs font-medium text-white/80">
           {label}
         </label>
       )}
@@ -38,7 +38,7 @@ export const Select = ({
         name={name}
         value={value}
         onChange={handleChange}
-        className={`${className} text-sm text-[#6a738b] border-none appearance-none ${
+        className={`${className} text-xs font-medium text-[#6a738b] border border-[#2a3042] appearance-none ${
           error ? "bg-red-300/50" : "bg-[#3c435a]/50"
         } p-2 rounded-md`}
       >

@@ -7,7 +7,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, content }) => {
   return (
-    <div className="flex flex-col h-1/3 bg-[#2a3042] rounded-md p-2 ">
+    <div className="flex flex-col bg-[#2a3042] rounded-md p-2 ">
       <h2 className="text-zinc-300 text-[13px] font-semibold mb-2">{title}</h2>
       <div className="text-zinc-400 overflow-auto">{content}</div>
     </div>
