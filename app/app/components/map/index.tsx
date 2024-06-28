@@ -12,6 +12,7 @@ export function Map() {
 
   return (
     <DeckGL
+      ref={map}
       initialViewState={{
         longitude: -47.88,
         latitude: -15.79,
@@ -22,10 +23,10 @@ export function Map() {
       controller
     >
       <PrimitiveMap
-        ref={map}
+        attributionControl={false}
         mapboxAccessToken='pk.eyJ1IjoiYXVndXN0by1zcGVjdHJheCIsImEiOiJjbHh4ZnNyOWUxN3Q2Mmtwcjlnbml2NGtrIn0.felXsgObrwgY5m-ew68RFA'
         mapStyle={value.style}
-        projection={{name: 'mercator'}}
+        projection={{ name: 'mercator' }}
       >
       </PrimitiveMap>
     </DeckGL>

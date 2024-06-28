@@ -4,10 +4,7 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
-  Legend,
   ResponsiveContainer,
-  Tooltip,
-  XAxis,
   YAxis
 } from "recharts";
 
@@ -24,7 +21,7 @@ export const VerticalBarChart = ({ data }: any) => {
   };
 
   return (
-    <ResponsiveContainer >
+    <ResponsiveContainer minHeight={200} >
       <BarChart
         data={data}
         margin={{ bottom: 5, right: 12 }}

@@ -3,31 +3,27 @@
 import { Dock, Label, Modal } from "@/app/components";
 import {
   ArrowsPointingOutIcon,
-  ClipboardDocumentListIcon,
-  ExclamationCircleIcon,
-  GlobeAmericasIcon,
-  LockClosedIcon,
   MagnifyingGlassIcon,
   MagnifyingGlassMinusIcon,
   MagnifyingGlassPlusIcon,
-  PencilIcon,
-  PresentationChartLineIcon,
-  Square3Stack3DIcon,
+  Square3Stack3DIcon
 } from "@heroicons/react/24/outline";
+import { FlyToInterpolator, MapViewState } from "deck.gl";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import Card from "./components/Card";
 import AddTerritory from "./components/modals/AddTerritory";
 import Alerts from "./components/modals/Alerts";
 import AreaInsights from "./components/modals/AreaInsights";
 import Environment from "./components/modals/Environment";
 import Layer from "./components/modals/Layer";
+import LoginRestrict from "./components/modals/LoginRestrict";
 import Reports from "./components/modals/Reports";
 import Restrict from "./components/modals/Restrict";
 import Search from "./components/modals/Search";
 import SearchDock from "./components/modals/SearchDock";
-import Skeleton from "react-loading-skeleton";
-import LoginRestrict from "./components/modals/LoginRestrict";
+import { useMap } from "./context/map";
 
 const VerticalBarChart = dynamic(
   () =>
@@ -42,7 +38,6 @@ const VerticalBarChart = dynamic(
 
 export default function Page() {
   const [logged, setLogged] = useState(false);
-
   const [search, setSearch] = useState(false);
   const [layer, setLayer] = useState(false);
   const [searchDock, setSearchDock] = useState(false);
@@ -50,12 +45,13 @@ export default function Page() {
 
   const searchRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
-
   const addTerritoryRef = useRef<any>(null);
   const restrictRef = useRef<any>(null);
   const environmentRef = useRef<any>(null);
   const reportsRef = useRef<any>(null);
   const alertsRef = useRef<any>(null);
+
+  const map = useMap();
 
   const data = new Array(30).fill(0).map((_, i) => ({
     name: i,
@@ -187,6 +183,14 @@ export default function Page() {
                   <MagnifyingGlassPlusIcon className="w-8 text-white p-1" />
                 ),
                 tooltip: "Aumentar",
+                handleClick: () => {if(map?.current?.deck) { map.current.deck.setProps({
+                  initialViewState: {
+                    ...map.current.deck?.props.initialViewState as MapViewState,
+                    zoom: +(map.current.deck?.props.initialViewState?.zoom ?? 0) + 1,
+                    transitionInterpolator: new FlyToInterpolator({speed: 2}),
+                    transitionDuration: 'auto'
+                  }
+                })}}
               },
               {
                 icon: (
