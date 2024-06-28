@@ -49,10 +49,6 @@ const Environment = ({ onClose }: EnvironmentProps) => {
     { label: "Umidade do Solo", value: "Umidade do Solo" },
     { label: "Focos de Incêndios", value: "Focos de Incêndios" },
     { label: "Severidade da Queimada", value: "Severidade da Queimada" },
-    {
-      label: "No caso da Frigobom vai aparecer a qualidade da pastagem",
-      value: "No caso da Frigobom vai aparecer a qualidade da pastagem",
-    },
   ];
 
   const years = Array.from({ length: 17 }, (_, i) => 2008 + i).map((year) => ({
