@@ -30,8 +30,8 @@ export const InputDocs = ({
         name={name}
         accept={accept}
         onChange={handleChange}
-        className={`${className} text-sm text-white bg-transparent ${
-          error ? "bg-red-300/50" : "bg-[#3c435a]/50"
+        className={`${className} text-sm text-white bg-transparent border border-[#2a3042] ${
+          error ? "bg-red-300/50" : "!bg-[#3c435a]/50"
         } rounded-md file:bg-[#6a738b] file:text-white file:border-none file:p-2`}
       />
 

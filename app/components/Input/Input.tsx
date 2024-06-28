@@ -56,7 +56,7 @@ export const Input = ({
         <button
           type="button"
           onClick={handleClick}
-          className="absolute top-[37px] right-[11px]"
+          className="absolute top-[1.7rem] right-[0.5rem]"
         >
           {password === "password" ? (
             <EyeSlashIcon className="w-5 text-white" />

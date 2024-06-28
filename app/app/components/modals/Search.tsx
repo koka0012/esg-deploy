@@ -9,11 +9,7 @@ interface FormValues {
   nome_produtor: string;
 }
 
-export interface SearchProps {
-  onClose: () => void;
-}
-
-const Search = ({ onClose }: SearchProps) => {
+const Search = () => {
   const initialValues: FormValues = {
     car: "",
     cpf: "",
@@ -90,7 +86,7 @@ const Search = ({ onClose }: SearchProps) => {
               </div>
             </div>
 
-            <div className="bg-[#2a3042] p-4 flex justify-end">
+            <div className="bg-[#2a3042] px-4 py-2 flex justify-end">
               <Button
                 type="submit"
                 disabled={isSubmitting}
