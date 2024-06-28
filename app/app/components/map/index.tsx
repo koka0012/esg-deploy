@@ -1,8 +1,7 @@
 'use client'
 import type { GeoBoundingBox } from '@deck.gl/geo-layers';
 import { DeckGL } from '@deck.gl/react';
-import { BitmapLayer, MVTLayer, TileLayer, } from 'deck.gl';
-import {_WMSLayer as WMSLayer} from '@deck.gl/geo-layers'
+import { BitmapLayer, MVTLayer, TileLayer } from 'deck.gl';
 import { reduce } from 'lodash';
 import proj4 from 'proj4';
 import PrimitiveMap from 'react-map-gl';
@@ -93,7 +92,7 @@ export function Map({ apiToken }: IMapProps) {
       qp.append('format', 'image/jpeg')
       qp.append('transparent', 'false')
       qp.append('version', '1.1.1')
-      qp.append('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImF1Z3VzdG8uc2lsdmVpcmFAc3BlY3RyYXguY29tLmJyIiwidHlwZSI6InVzZXIiLCJjbnBqIjoiNTIyNDE0MzQwMDAxODciLCJpZCI6MTIsImlhdCI6MTcxOTUyMzQ4OCwiZXhwIjoxNzE5NTMwNjg4LCJzdWIiOiJjbGllbnQtZGFydCJ9.V5IujZWDXxrUuhzlPSwfNYnRaAWe2-FPKtzGf_hTZCU')
+      qp.append('token', apiToken)
 
       const url = `https://account.farmguide.com.br/api/map?${qp.toString()}`
       return url
@@ -128,7 +127,6 @@ export function Map({ apiToken }: IMapProps) {
     getPointRadius: 2,
     pointRadiusUnits: 'pixels'
   })
-  
 
 
   return (
