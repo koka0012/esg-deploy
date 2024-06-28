@@ -91,7 +91,7 @@ const Search = () => {
 
               <ChevronDownIcon
                 className={`w-4 ${
-                  isDropdownOpen ? "rotate-1" : "rotate-180"
+                  !isDropdownOpen ? "rotate-0" : "-rotate-180"
                 } transition-all duration-150`}
               />
             </button>

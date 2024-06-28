@@ -29,6 +29,9 @@ const template = (token: string) => ({
   token,
 });
 
+interface SoyBeanProperties {
+  area_ha: number
+}
 
 
 export function Map({ apiToken }: IMapProps) {
@@ -110,7 +113,7 @@ export function Map({ apiToken }: IMapProps) {
     }
   })
 
-  const mvtLayer = new MVTLayer({
+  const mvtLayer = new MVTLayer<SoyBeanProperties>({
     id: 'mvt-layer',
     data: [
       `https://account.farmguide.com.br/api/vector?sc=admin&layers=vector_soybean_2023&styles=nd&x={x}&y={y}&z={z}&token=${apiToken}`
@@ -121,6 +124,9 @@ export function Map({ apiToken }: IMapProps) {
     opacity: 0.35,
     filled: true,
     stroked: true,
+    pickable: true,
+    getPointRadius: 2,
+    pointRadiusUnits: 'pixels'
   })
   
 
@@ -133,6 +139,7 @@ export function Map({ apiToken }: IMapProps) {
         zoom: 3
       }}
       layers={[wmsLayer, mvtLayer]}
+      getTooltip={({ object }) => object && `Área ${object.properties.area_ha}ha`}
       controller>
       <PrimitiveMap
         mapboxAccessToken='pk.eyJ1IjoiYXVndXN0by1zcGVjdHJheCIsImEiOiJjbHh4ZnNyOWUxN3Q2Mmtwcjlnbml2NGtrIn0.felXsgObrwgY5m-ew68RFA'
