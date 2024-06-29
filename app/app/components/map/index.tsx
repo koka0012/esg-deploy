@@ -4,11 +4,14 @@ import PrimitiveMap from 'react-map-gl';
 import { useLayers } from '../../context/layers';
 import { useMap } from '../../context/map';
 import { useMapStyle } from '../../context/mapStyle';
+import { useState } from 'react';
 
 export function Map() {
   const map = useMap()
-  const { layers } = useLayers();
+  const { layers, deckLayers, findLayer } = useLayers();
   const { value } = useMapStyle()
+
+  const [selected, setSelected] = useState()
 
   return (
     <DeckGL
@@ -18,9 +21,16 @@ export function Map() {
         latitude: -15.79,
         zoom: 3
       }}
-      layers={layers}
-      getTooltip={({ object }) => object && `Área ${object.properties.area_ha}ha`}
+      layers={deckLayers}
       controller
+      onClick={(info) => {
+        const {picked, layer: deckLayer} = info;
+        if(picked && !deckLayer) return;
+
+        const layer = findLayer(deckLayer?.id!)
+
+        layer?.onPick?.(info)
+      }}
     >
       <PrimitiveMap
         attributionControl={false}

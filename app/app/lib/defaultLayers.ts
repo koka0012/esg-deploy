@@ -6,8 +6,8 @@ import proj4 from 'proj4';
 import { createLayer } from "../context/layers";
 
 
-export const defaultLayers = (token: string) => ([
-  createLayer(TileLayer, 'deodápolis', {
+export const defaultLayers = (token: string) => ({
+  "deodápolis": createLayer(TileLayer, 'deodápolis', {
     data: '',
     minZoom: 1,
     maxZoom: 19,
@@ -49,7 +49,7 @@ export const defaultLayers = (token: string) => ([
       })
     }
   }),
-  createLayer(MVTLayer, 'soybean', {
+  "soybean": createLayer(MVTLayer, 'soybean', {
     data: [
       `https://account.farmguide.com.br/api/vector?sc=admin&layers=vector_soybean_2023&styles=nd&x={x}&y={y}&z={z}&token=${token}`
     ],
@@ -61,7 +61,10 @@ export const defaultLayers = (token: string) => ([
     stroked: true,
     pickable: true,
     getPointRadius: 2,
-    pointRadiusUnits: 'pixels'
+    pointRadiusUnits: 'pixels',
+  }, {
+    onPick: (info) => {
+      console.log(info)
+    }
   }),
-
-])
+})
