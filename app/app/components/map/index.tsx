@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { cn } from '@/app/lib/utils';
 import { PickingInfo } from 'deck.gl';
 import { nanoid } from 'nanoid';
-import { CheckCircleIcon } from 'lucide-react';
+import { CheckCircleIcon, X } from 'lucide-react';
 
 export function Map() {
   const map = useMap()
@@ -62,6 +62,7 @@ export function Map() {
               top: `${selected.y}px`,
               left: `${selected.x}px`
             }}>
+            <div className='flex justify-end'><X size={14} className="text-gray-500 hover:text-gray-700 cursor-pointer" onClick={() => setSelected(undefined)}/></div>
             <p className='text-sm text-white'><span className='font-bold'>ID:</span> {nanoid()}</p>
             <p className='text-sm text-white'><span className='font-bold'>Município:</span> Deodápolis</p>
             <p className='text-sm text-white'><span className='font-bold'>Bioma:</span> Mata Atlantica</p>
